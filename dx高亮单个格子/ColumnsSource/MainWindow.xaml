@@ -1,0 +1,45 @@
+﻿<Window xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        x:Class="ColumnsSource.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+        xmlns:local="clr-namespace:ColumnsSource"
+        Title="MainWindow"
+        Height="350"
+        Width="525"
+        Name="mainWindow">
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <local:BorderConverter x:Key="con"/>
+        <DataTemplate x:Key="cellWithBorderTemplate">
+            <Border BorderBrush="Orange" BorderThickness="{Binding Value, Converter={StaticResource con}}">
+                <dxe:TextEdit x:Name="PART_Editor" />
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+       
+        <dxg:GridControl Grid.Row="1"
+                         Name="grid"
+                         ColumnsSource="{Binding SelectorSource, ElementName=mainWindow}" ItemsSource="{Binding List}">
+            <dxg:GridControl.ColumnGeneratorTemplate>
+                <DataTemplate>
+                    <ContentControl>
+                        <dxg:GridColumn FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}" Width="100" FixedWidth="True" CellTemplate="{StaticResource cellWithBorderTemplate}"/>
+                    </ContentControl>
+                </DataTemplate>
+            </dxg:GridControl.ColumnGeneratorTemplate>
+            <dxg:GridControl.View>
+                <dxg:TableView x:Name="view" NavigationStyle="Cell" AutoWidth="False" AllowBestFit="True"
+                              AllowPerPixelScrolling="True" ShowTotalSummary="True" ShowAutoFilterRow="False" ShowGroupPanel="False" AllowColumnFiltering="False" AllowColumnMoving="False" AllowGrouping="False" AllowSorting="False"
+                             />
+
+
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</Window>

@@ -1,0 +1,53 @@
+﻿<dx:ThemedWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+                 xmlns:dxednc="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
+                 xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+                 x:Class="WpfApp2.MainWindow" WindowStartupLocation="CenterScreen"
+                 WindowKind="Ribbon"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+
+
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+
+    </Window.Resources>
+
+    <Grid>
+        <dxg:GridControl ItemsSource="{Binding Customers}" AutoGenerateColumns="AddNew">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Name">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Border x:Name="PART_CellBorder"/>
+                                <dxe:InplaceBaseEdit Name="PART_Editor"/>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RowData.Row.IsVisible}" Value="True">
+                                    <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Gray"/>
+                                    <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="2"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowData.Row.IsGreenBorder}" Value="True">
+                                    <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Green"/>
+                                    <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</dx:ThemedWindow>

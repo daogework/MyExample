@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF性能测试", "WPF性能测试\WPF性能测试.csproj", "{E6A16F81-2FCB-49F9-B4EE-EA4B1943EB1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6A16F81-2FCB-49F9-B4EE-EA4B1943EB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6A16F81-2FCB-49F9-B4EE-EA4B1943EB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6A16F81-2FCB-49F9-B4EE-EA4B1943EB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6A16F81-2FCB-49F9-B4EE-EA4B1943EB1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5982A14B-F98D-4F6F-A220-A1D3AA8E2DF0}
+	EndGlobalSection
+EndGlobal

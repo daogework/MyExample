@@ -1,0 +1,238 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:local="clr-namespace:DevExpressTableViewTest" x:Class="DevExpressTableViewTest.MainWindow"
+
+        Title="MainWindow" Height="600" Width="1800">
+
+    <Window.Resources>
+        <dxe:TextEditSettings x:Key="CenterText" HorizontalContentAlignment="Center"/>
+        <DataTemplate x:Key="TextFormatter">
+            <dxe:TextEdit Name="PART_Editor" EditValue="{Binding Value, Converter={local:TextConverter}}" HorizontalAlignment="Center"/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type dxg:GridColumn}">
+                <Setter Property="HorizontalHeaderContentAlignment" Value="Center"/>
+                <Setter Property="Width" Value="100"/>
+            </Style>
+            <Style TargetType="{x:Type dxg:GridControlBand}">
+                <Setter Property="HorizontalHeaderContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="ToggleButton">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </Style>
+        </Grid.Resources>
+        <dxg:GridControl ItemsSource="{Binding}" 
+                         x:Name="dataGridEx" SelectionMode="Cell" 
+                         AllowColumnMRUFilterList="False" 
+                         AllowMRUFilterList="False" IsFilterEnabled="False" 
+                         ShowAllTableValuesInCheckedFilterPopup="False" 
+                         ShowBorder="False" >
+            <dxg:GridControl.Bands>
+                <dxg:GridControlBand Header="玩家信息" Width="Auto">
+                    <dxg:GridColumn FieldName="ID" Width="85" dxg:BandBase.GridRow="1" Binding="{Binding id}" EditSettings="{StaticResource CenterText}"/>
+                    <dxg:GridColumn FieldName="名字" dxg:BandBase.GridRow="1" Binding="{Binding name}" EditSettings="{StaticResource CenterText}"/>
+                    <dxg:GridColumn FieldName="总下注" Width="80" VisibleIndex="2" dxg:BandBase.GridRow="1" Binding="{Binding 总下注}"  EditSettings="{StaticResource CenterText}"/>
+                </dxg:GridControlBand>
+
+                <dxg:GridControlBand Header="三元" >
+                    <dxg:GridControlBand.HeaderTemplate>
+                        <DataTemplate>
+                            <RadioButton Content="三元" GroupName="三元四喜"/>
+                        </DataTemplate>
+                    </dxg:GridControlBand.HeaderTemplate>
+
+                    <dxg:GridColumn FieldName="狮子" VisibleIndex="0" dxg:BandBase.GridRow="1" Binding="{Binding 狮子}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <RadioButton Content="狮子" GroupName="三元"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="熊猫" VisibleIndex="1" dxg:BandBase.GridRow="1" Binding="{Binding 熊猫}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <RadioButton Content="熊猫" GroupName="三元"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="猴子" VisibleIndex="2" dxg:BandBase.GridRow="1" Binding="{Binding 猴子}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <RadioButton Content="猴子" GroupName="三元"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="兔子" VisibleIndex="3" dxg:BandBase.GridRow="1" Binding="{Binding 兔子}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <RadioButton Content="兔子" GroupName="三元"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+                </dxg:GridControlBand>
+
+                <dxg:GridControlBand Header="四喜" >
+                    <dxg:GridControlBand.HeaderTemplate>
+                        <DataTemplate>
+                            <RadioButton Content="四喜" GroupName="三元四喜"/>
+                        </DataTemplate>
+                    </dxg:GridControlBand.HeaderTemplate>
+
+                    <dxg:GridColumn FieldName="红" VisibleIndex="0" dxg:BandBase.GridRow="1" Binding="{Binding 红}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <RadioButton Content="红" GroupName="四喜"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="绿" VisibleIndex="1" dxg:BandBase.GridRow="1" Binding="{Binding 绿}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <RadioButton Content="绿" GroupName="四喜"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="黄" VisibleIndex="2" dxg:BandBase.GridRow="1" Binding="{Binding 黄}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <RadioButton Content="黄" GroupName="四喜"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+                </dxg:GridControlBand>
+
+                <dxg:GridControlBand Header="出奖" >
+                    <dxg:GridControlBand.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Content="闪电2倍  " GroupName="特殊"/>
+                                <RadioButton Content="闪电3倍  " GroupName="特殊"/>
+                                <RadioButton Content="彩金" GroupName="特殊"/>
+                            </StackPanel>
+                            
+                        </DataTemplate>
+                    </dxg:GridControlBand.HeaderTemplate>
+
+                    <dxg:GridColumn FieldName="红狮子"  dxg:BandBase.GridRow="1" Binding="{Binding 红狮子}" Name="红狮子" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="红狮子"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="绿狮子"  dxg:BandBase.GridRow="1" Binding="{Binding 绿狮子}" Name="绿狮子" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="绿狮子"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="黄狮子"  dxg:BandBase.GridRow="1" Binding="{Binding 黄狮子}" Name="黄狮子" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="黄狮子"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="红熊猫"  dxg:BandBase.GridRow="1" Binding="{Binding 红熊猫}" Name="红熊猫" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="红熊猫"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="绿熊猫"  dxg:BandBase.GridRow="1" Binding="{Binding 绿熊猫}" Name="绿熊猫" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="绿熊猫"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="黄熊猫"  dxg:BandBase.GridRow="1" Binding="{Binding 黄熊猫}" Name="黄熊猫" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="黄熊猫"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="红猴子"  dxg:BandBase.GridRow="1" Binding="{Binding 红猴子}" Name="红猴子" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="红猴子"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="绿猴子"  dxg:BandBase.GridRow="1" Binding="{Binding 绿猴子}" Name="绿猴子" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="绿猴子"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="黄猴子"  dxg:BandBase.GridRow="1" Binding="{Binding 黄猴子}" Name="黄猴子" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="黄猴子"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="红兔子"  dxg:BandBase.GridRow="1" Binding="{Binding 红兔子}" Name="红兔子" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="红兔子"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="绿兔子"  dxg:BandBase.GridRow="1" Binding="{Binding 绿兔子}" Name="绿兔子" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="绿兔子"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn FieldName="黄兔子"  dxg:BandBase.GridRow="1" Binding="{Binding 黄兔子}" Name="黄兔子" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource TextFormatter}">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="黄兔子"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                    </dxg:GridColumn>
+
+                </dxg:GridControlBand>
+
+            </dxg:GridControl.Bands>
+            <dxg:GridControl.View>
+
+                <dxg:TreeListView AllowSorting="False" Name="dataGridExView" CustomCellAppearance="view_CustomCellAppearance"/>
+
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+
+        <dx:SimpleButton Content="SimpleButton" HorizontalAlignment="Left" Height="30" Margin="558,248,0,0" VerticalAlignment="Top" Width="114" Click="SimpleButton_Click"/>
+
+    </Grid>
+</Window>

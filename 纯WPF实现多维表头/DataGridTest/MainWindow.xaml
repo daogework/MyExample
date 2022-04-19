@@ -1,0 +1,121 @@
+﻿<Window x:Class="DataGridTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataGridTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid Name="dataGrid" AutoGenerateColumns="False"
+                          ColumnHeaderHeight="50">
+
+            <DataGrid.Resources>
+
+                <Style x:Key="DataGridColumnHeader" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                <Grid>
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn  Header="Main11" Width="70" Binding="{Binding 熊猫}" HeaderStyle="{StaticResource DataGridColumnHeader}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock   Width="60" Height="17"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock   Width="10"/>
+                                    <RadioButton Content="熊猫" GroupName="三元"/>
+                                    <Line Stroke="Black" X1="10" X2="10" Y2="15" Opacity="0.3" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Header="Main11" Width="60" Binding="{Binding 猴子}" HeaderStyle="{StaticResource DataGridColumnHeader}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <RadioButton Content="三元" Height="18" GroupName="特殊奖"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton Content="猴子" GroupName="三元"/>
+                                    <Line Stroke="Black" X1="10" X2="10" Y2="16" Opacity="0.3" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Header="Main11" Width="60" Binding="{Binding 兔子}" HeaderStyle="{StaticResource DataGridColumnHeader}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock   Width="60"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton Content="兔子" GroupName="三元"/>
+                                    <Line Stroke="Black" X1="10" X2="10" Y2="16" Opacity="0.3" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+
+
+
+                <DataGridTextColumn  Header="Main11" Width="70" Binding="{Binding 熊猫}" HeaderStyle="{StaticResource DataGridColumnHeader}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock   Width="60" Height="17"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock   Width="10"/>
+                                    <RadioButton Content="熊猫" GroupName="三元"/>
+                                    <Line Stroke="Black" X1="10" X2="10" Y2="15" Opacity="0.3" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Header="Main11" Width="60" Binding="{Binding 猴子}" HeaderStyle="{StaticResource DataGridColumnHeader}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <RadioButton Content="四喜" Height="18" GroupName="特殊奖"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton Content="猴子" GroupName="三元"/>
+                                    <Line Stroke="Black" X1="10" X2="10" Y2="16" Opacity="0.3" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Header="Main11" Width="60" Binding="{Binding 兔子}" HeaderStyle="{StaticResource DataGridColumnHeader}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock   Width="60"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton Content="兔子" GroupName="三元"/>
+                                    <Line Stroke="Black" X1="10" X2="10" Y2="16" Opacity="0.3" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</Window>
