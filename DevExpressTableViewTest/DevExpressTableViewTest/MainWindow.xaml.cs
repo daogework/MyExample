@@ -53,25 +53,25 @@ namespace DevExpressTableViewTest
                     Id = random.Next(),
                     Name = "" + random.Next(),
                     总下注 = random.Next(),
-                    //狮子 = random.Next(),
-                    //熊猫 = random.Next(),
-                    //猴子 = random.Next(),
-                    //兔子 = random.Next(),
-                    //红 = random.Next(),
-                    //绿 = random.Next(),
-                    //黄 = random.Next(),
-                    //红狮子 = random.Next(),
-                    //绿狮子 = random.Next(),
-                    //黄狮子 = random.Next(),
-                    //红熊猫 = random.Next(),
-                    //绿熊猫 = random.Next(),
-                    //黄熊猫 = random.Next(),
-                    //红猴子 = random.Next(),
-                    //绿猴子 = random.Next(),
-                    //黄猴子 = random.Next(),
-                    //红兔子 = random.Next(),
-                    //绿兔子 = random.Next(),
-                    //黄兔子 = random.Next(),
+                    狮子 = random.Next(),
+                    熊猫 = random.Next(),
+                    猴子 = random.Next(),
+                    兔子 = random.Next(),
+                    红 = random.Next(),
+                    绿 = random.Next(),
+                    黄 = random.Next(),
+                    红狮子 = random.Next(),
+                    绿狮子 = random.Next(),
+                    黄狮子 = random.Next(),
+                    红熊猫 = random.Next(),
+                    绿熊猫 = random.Next(),
+                    黄熊猫 = random.Next(),
+                    红猴子 = random.Next(),
+                    绿猴子 = random.Next(),
+                    黄猴子 = random.Next(),
+                    红兔子 = random.Next(),
+                    绿兔子 = random.Next(),
+                    黄兔子 = random.Next(),
                     //V20 = random.Next()
                 });
             }
@@ -83,7 +83,7 @@ namespace DevExpressTableViewTest
 
             CollectionView = new CollectionViewSource() { Source = users }.View;
             CollectionView.SortDescriptions.Add(new SortDescription("Sortid", ListSortDirection.Ascending));
-            CollectionView.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Ascending));
+            CollectionView.SortDescriptions.Add(new SortDescription("总下注", ListSortDirection.Descending));
             CollectionView.MoveCurrentToFirst();
 
             dataGridEx.ItemsSource = CollectionView;
@@ -144,7 +144,7 @@ namespace DevExpressTableViewTest
         public static SolidColorBrush 正值字体颜色 = Utils.BushFromStringColor("#00B050");
         private void view_CustomCellAppearance(object sender, CustomCellAppearanceEventArgs e)
         {
-            
+
             if (e.Property == TextElement.BackgroundProperty)
             {
                 var data = (Data)dataGridEx.GetRow(e.RowHandle);
@@ -153,24 +153,21 @@ namespace DevExpressTableViewTest
                 {
                     e.Result = 最小值背景色;
                     e.Handled = true;
-                }else if (data.MaxFieldName == e.Column.FieldName)
+                }
+                else if (data.MaxFieldName == e.Column.FieldName)
                 {
                     e.Result = 最大值背景色;
                     e.Handled = true;
                     //var CellStyle = e.Column.CellStyle;
-                    
-                }
 
-                
-                
-                //e.RowHandle
+                }
             }
             else if (e.Property == TextElement.ForegroundProperty)
             {
                 if (e.Column != null)
                 {
                     var basevalue = dataGridEx.GetCellValue(e.RowHandle, (GridColumn)e.Column);
-                    if(basevalue is long)
+                    if (basevalue is long)
                     {
                         var value = (long)basevalue;
                         if (value > 0)
@@ -184,9 +181,9 @@ namespace DevExpressTableViewTest
                             e.Handled = true;
                         }
                     }
-                    
+
                 }
-                
+
             }
         }
 

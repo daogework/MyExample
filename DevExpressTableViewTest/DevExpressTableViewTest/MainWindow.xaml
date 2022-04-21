@@ -5,7 +5,8 @@
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
         xmlns:local="clr-namespace:DevExpressTableViewTest" x:Class="DevExpressTableViewTest.MainWindow"
-        xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:lex="https://github.com/XAMLMarkupExtensions/WPFLocalizationExtension"
+        xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" 
+
     Title="MainWindow" Height="600" Width="1800" x:Name="MyMainWindow">
 
     <Window.Resources>
@@ -531,7 +532,7 @@
                     <dxg:GridColumn FieldName="闲"  dxg:BandBase.GridRow="1" Binding="{Binding 闲}" Name="闲" EditSettings="{StaticResource CenterText}" >
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="闲" GroupName="闲闲和"/>
+                                <RadioButton Content="闲" GroupName="庄闲和"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -557,7 +558,7 @@
                     <dxg:GridColumn FieldName="和"  dxg:BandBase.GridRow="1" Binding="{Binding 和}" Name="和" EditSettings="{StaticResource CenterText}" >
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="和" GroupName="和闲和"/>
+                                <RadioButton Content="和" GroupName="庄闲和"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
