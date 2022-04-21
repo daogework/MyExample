@@ -13,9 +13,9 @@ namespace DevExpressTableViewTest
         {
             RaisePropertiesChanged();
         }
-        public int sortid { get; set; } = 0;
-        public int id { get; set; }
-        public string name { get; set; } = "";
+        public int Sortid { get; set; } = 0;
+        public int Id { get; set; }
+        public string Name { get; set; } = "";
         public long 总下注 { get; set; } = 0;
         private long 狮子_ = 0;
         public long 狮子
@@ -245,6 +245,42 @@ namespace DevExpressTableViewTest
             }
         }
 
+        private long 庄_ = 0;
+        public long 庄
+        {
+            get => 庄_;
+            set
+            {
+                庄_ = value;
+                if (value > max) { max = value; MaxFieldName = "庄"; }
+                if (value < min) { min = value; MinFieldName = "庄"; }
+            }
+        }
+
+        private long 闲_ = 0;
+        public long 闲
+        {
+            get => 闲_;
+            set
+            {
+                闲_ = value;
+                if (value > max) { max = value; MaxFieldName = "闲"; }
+                if (value < min) { min = value; MinFieldName = "闲"; }
+            }
+        }
+
+        private long 和_ = 0;
+        public long 和
+        {
+            get => 和_;
+            set
+            {
+                和_ = value;
+                if (value > max) { max = value; MaxFieldName = "和"; }
+                if (value < min) { min = value; MinFieldName = "和"; }
+            }
+        }
+
         public void ResetMinMin()
         {
             max = 0;
@@ -257,6 +293,8 @@ namespace DevExpressTableViewTest
         private long min = 0;
         public string MaxFieldName { get; private set; } = "";
         public string MinFieldName { get; private set; } = "";
+
+        
 
     }
 }

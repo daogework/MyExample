@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Data;
+using System.Windows.Markup;
+using System.Windows.Media;
+
+namespace DevExpressTableViewTest
+{
+    public class TextConverter : MarkupExtension, IValueConverter
+    {
+
+
+
+        string CustomValueFormat(long v)
+        {
+            var absv = Math.Abs(v);
+            if (absv > 1_0000_0000)
+            {
+                return Math.Round(v / 1_0000_0000.0, 2) + "亿";
+            }
+            else if (absv > 1_0000)
+            {
+                return Math.Round(v / 1_0000.0, 2) + "万";
+            }
+            return v.ToString();
+        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null) return "";
+            return CustomValueFormat((long)value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
+}

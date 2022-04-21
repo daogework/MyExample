@@ -27,43 +27,14 @@ using DevExpress.Xpf.Core.ConditionalFormatting;
 namespace DevExpressTableViewTest
 {
 
-    public class TextConverter : MarkupExtension, IValueConverter
-    {
-        string CustomValueFormat(long v)
-        {
-            var absv = Math.Abs(v);
-            if (absv > 1_0000_0000)
-            {
-                return Math.Round(v / 1_0000_0000.0, 2) + "亿";
-            }
-            else if (absv > 1_0000)
-            {
-                return Math.Round(v / 1_0000.0, 2) + "万";
-            }
-            return v.ToString();
-        }
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null) return "";
-            return CustomValueFormat((long)value);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
-        }
-    }
+    
     
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        
         ObservableCollection<Data> users;
         Random random = new Random(DateTime.Now.Millisecond);
         public ICollectionView CollectionView { get; private set; }
@@ -79,8 +50,8 @@ namespace DevExpressTableViewTest
 
                 users.Add(new Data
                 {
-                    id = random.Next(),
-                    name = "" + random.Next(),
+                    Id = random.Next(),
+                    Name = "" + random.Next(),
                     总下注 = random.Next(),
                     //狮子 = random.Next(),
                     //熊猫 = random.Next(),
@@ -105,14 +76,14 @@ namespace DevExpressTableViewTest
                 });
             }
 
-            users[10].sortid = -10;
-            users[11].sortid = -11;
-            users[10].name = "系统1";
-            users[11].name = "系统2";
+            users[10].Sortid = -10;
+            users[11].Sortid = -11;
+            users[10].Name = "系统1";
+            users[11].Name = "系统2";
 
             CollectionView = new CollectionViewSource() { Source = users }.View;
-            CollectionView.SortDescriptions.Add(new SortDescription("sortid", ListSortDirection.Ascending));
-            CollectionView.SortDescriptions.Add(new SortDescription("id", ListSortDirection.Ascending));
+            CollectionView.SortDescriptions.Add(new SortDescription("Sortid", ListSortDirection.Ascending));
+            CollectionView.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Ascending));
             CollectionView.MoveCurrentToFirst();
 
             dataGridEx.ItemsSource = CollectionView;
@@ -139,24 +110,83 @@ namespace DevExpressTableViewTest
 
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        string result = "绿狮子";
+        public string Result
+        {
+            get => result; set
+            {
+                result = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        string result2 = "庄";
+        public string Result2
+        {
+            get => result2; set
+            {
+                result2 = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool TestB = true;
+        ColumnBase lastcol = null;
+
+        public static SolidColorBrush 最小值背景色 = Utils.BushFromStringColor("#FF9999");
+        public static SolidColorBrush 最大值背景色 = Utils.BushFromStringColor("#E2EFDA");
+        public static SolidColorBrush 负值字体颜色 = Utils.BushFromStringColor("#C00000");
+        public static SolidColorBrush 正值字体颜色 = Utils.BushFromStringColor("#00B050");
         private void view_CustomCellAppearance(object sender, CustomCellAppearanceEventArgs e)
         {
+            
             if (e.Property == TextElement.BackgroundProperty)
             {
                 var data = (Data)dataGridEx.GetRow(e.RowHandle);
+                //dataGridEx.setc
                 if (data.MinFieldName == e.Column.FieldName)
                 {
-                    e.Result = Brushes.LightGreen;
+                    e.Result = 最小值背景色;
                     e.Handled = true;
                 }else if (data.MaxFieldName == e.Column.FieldName)
                 {
-                    e.Result = Brushes.LightCoral;
+                    e.Result = 最大值背景色;
                     e.Handled = true;
+                    //var CellStyle = e.Column.CellStyle;
+                    
                 }
 
                 
                 
                 //e.RowHandle
+            }
+            else if (e.Property == TextElement.ForegroundProperty)
+            {
+                if (e.Column != null)
+                {
+                    var basevalue = dataGridEx.GetCellValue(e.RowHandle, (GridColumn)e.Column);
+                    if(basevalue is long)
+                    {
+                        var value = (long)basevalue;
+                        if (value > 0)
+                        {
+                            e.Result = 正值字体颜色;
+                            e.Handled = true;
+                        }
+                        else if (value < 0)
+                        {
+                            e.Result = 负值字体颜色;
+                            e.Handled = true;
+                        }
+                    }
+                    
+                }
+                
             }
         }
 
@@ -168,7 +198,7 @@ namespace DevExpressTableViewTest
             Stopwatch sw = Stopwatch.StartNew();
             foreach (var item in users)
             {
-                item.id = random.Next();
+                item.Id = random.Next();
                 item.总下注 = random.Next();
                 item.狮子 = random.Next(-20_0000_0000, 20_0000_0000);
                 item.熊猫 = random.Next(-20_0000_0000, 20_0000_0000);
@@ -198,6 +228,31 @@ namespace DevExpressTableViewTest
             //sw.Restart();
             //dataGridEx.RefreshData();
         }
+        bool b = false;
+
         
+
+        private void SimpleButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (b)
+            {
+                Result = "";
+            }
+            else
+            {
+                Result = "四喜";
+            }
+            
+            b = !b;
+            if (lastcol != null)
+            {
+
+                    
+
+
+            }
+        }
+
+      
     }
 }
