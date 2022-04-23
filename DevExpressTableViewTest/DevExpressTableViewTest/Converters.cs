@@ -10,11 +10,37 @@ using System.Windows.Media;
 
 namespace DevExpressTableViewTest
 {
+
+    public class 正或负 : MarkupExtension, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null) return "";
+            long v = (long)value;
+            if (v > 0)
+            {
+                return "正";
+            }
+            if (v < 0)
+            {
+                return "负";
+            }
+            return "";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
+
     public class TextConverter : MarkupExtension, IValueConverter
     {
-
-
-
         string CustomValueFormat(long v)
         {
             var absv = Math.Abs(v);

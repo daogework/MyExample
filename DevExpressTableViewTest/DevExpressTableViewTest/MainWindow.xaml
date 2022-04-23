@@ -35,6 +35,12 @@
                     <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                     <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                    <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                    <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
+                </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
 
@@ -51,6 +57,12 @@
                 <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="四喜">
                     <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                     <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                    <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                    <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
@@ -210,6 +222,13 @@
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
+                                    </DataTrigger>
+                                    
                                 </DataTemplate.Triggers>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
@@ -235,6 +254,12 @@
                                     <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="绿狮子">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
@@ -262,6 +287,12 @@
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
+                                    </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
@@ -287,6 +318,12 @@
                                     <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="红熊猫">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
@@ -314,6 +351,12 @@
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
+                                    </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
@@ -339,6 +382,12 @@
                                     <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="黄熊猫">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
@@ -366,6 +415,12 @@
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
+                                    </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
@@ -391,6 +446,12 @@
                                     <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="绿猴子">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
@@ -418,6 +479,12 @@
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
+                                    </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
@@ -443,6 +510,12 @@
                                     <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="红兔子">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
@@ -470,6 +543,12 @@
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
+                                    </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
@@ -496,6 +575,12 @@
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
+                                    </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
@@ -516,13 +601,19 @@
                                     <dxe:TextEdit Name="PART_Editor" EditValue="{Binding Value, Converter={local:TextConverter}}" HorizontalAlignment="Center"/>
                                 </Grid>
                                 <DataTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="">
+                                    <DataTrigger Binding="{Binding Result2, ElementName=MyMainWindow}" Value="">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="White"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="庄">
+                                    <DataTrigger Binding="{Binding Result2, ElementName=MyMainWindow}" Value="庄">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
@@ -543,17 +634,23 @@
                                     <dxe:TextEdit Name="PART_Editor" EditValue="{Binding Value, Converter={local:TextConverter}}" HorizontalAlignment="Center"/>
                                 </Grid>
                                 <DataTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="">
+                                    <DataTrigger Binding="{Binding Result2, ElementName=MyMainWindow}" Value="">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="White"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="闲">
+                                    <DataTrigger Binding="{Binding Result2, ElementName=MyMainWindow}" Value="闲">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Value}" Value="闲">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
@@ -573,13 +670,19 @@
                                     <dxe:TextEdit Name="PART_Editor" EditValue="{Binding Value, Converter={local:TextConverter}}" HorizontalAlignment="Center"/>
                                 </Grid>
                                 <DataTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="">
+                                    <DataTrigger Binding="{Binding Result2, ElementName=MyMainWindow}" Value="">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="White"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="和">
+                                    <DataTrigger Binding="{Binding Result2, ElementName=MyMainWindow}" Value="和">
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="正">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#00B050"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value, Converter={local:正或负}}" Value="负">
+                                        <Setter TargetName="PART_Editor" Property="Foreground" Value="#C00000"/>
                                     </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
@@ -590,7 +693,7 @@
             </dxg:GridControl.Bands>
             <dxg:GridControl.View>
 
-                <dxg:TreeListView AllowSorting="False" Name="dataGridExView" 
+                <dxg:TreeListView AllowSorting="False"
                                   CustomCellAppearance="view_CustomCellAppearance"/>
 
             </dxg:GridControl.View>

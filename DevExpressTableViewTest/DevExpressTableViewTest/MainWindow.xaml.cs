@@ -94,7 +94,7 @@ namespace DevExpressTableViewTest
 
             
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 2000; i++)
             {
 
                 users.Add(new Data
@@ -177,6 +177,7 @@ namespace DevExpressTableViewTest
 
         public static SolidColorBrush 最小值背景色 = Utils.BushFromStringColor("#FF9999");
         public static SolidColorBrush 最大值背景色 = Utils.BushFromStringColor("#E2EFDA");
+
         public static SolidColorBrush 负值字体颜色 = Utils.BushFromStringColor("#C00000");
         public static SolidColorBrush 正值字体颜色 = Utils.BushFromStringColor("#00B050");
         private void view_CustomCellAppearance(object sender, CustomCellAppearanceEventArgs e)
@@ -199,29 +200,29 @@ namespace DevExpressTableViewTest
 
                 }
             }
-            else if (e.Property == TextElement.ForegroundProperty)
-            {
-                if (e.Column != null)
-                {
-                    var basevalue = dataGridEx.GetCellValue(e.RowHandle, (GridColumn)e.Column);
-                    if (basevalue is long)
-                    {
-                        var value = (long)basevalue;
-                        if (value > 0)
-                        {
-                            e.Result = 正值字体颜色;
-                            e.Handled = true;
-                        }
-                        else if (value < 0)
-                        {
-                            e.Result = 负值字体颜色;
-                            e.Handled = true;
-                        }
-                    }
+            //else if (e.Property == TextElement.ForegroundProperty)
+            //{
+            //    if (e.Column != null)
+            //    {
+            //        var basevalue = dataGridEx.GetCellValue(e.RowHandle, (GridColumn)e.Column);
+            //        if (basevalue is long)
+            //        {
+            //            var value = (long)basevalue;
+            //            if (value > 0)
+            //            {
+            //                e.Result = 正值字体颜色;
+            //                e.Handled = true;
+            //            }
+            //            else if (value < 0)
+            //            {
+            //                e.Result = 负值字体颜色;
+            //                e.Handled = true;
+            //            }
+            //        }
 
-                }
+            //    }
 
-            }
+            //}
         }
 
         private void SimpleButton_Click(object sender, RoutedEventArgs e)
@@ -264,19 +265,29 @@ namespace DevExpressTableViewTest
         }
         bool b = false;
 
-        
 
+        List<string> testList = new List<string>() { 
+        "三元","四喜",
+        "红狮子",
+        "绿狮子",
+        "黄狮子",
+        };
+        int testIndex = 0;
         private void SimpleButton_Click_1(object sender, RoutedEventArgs e)
         {
-            if (b)
-            {
-                Result = "";
-            }
-            else
-            {
-                Result = "四喜";
-            }
-            
+            testIndex++;
+            testIndex %= testList.Count;
+            //if (b)
+            //{
+            //    Result = "";
+            //}
+            //else
+            //{
+            //    Result = "四喜";
+            //}
+            Result = testList[testIndex];
+
+
             b = !b;
             if (lastcol != null)
             {
