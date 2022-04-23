@@ -23,6 +23,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Grid;
 using DevExpress.Xpf.Core.ConditionalFormatting;
+using DevExpress.Xpf.Core.Native;
+using DevExpress.Mvvm.Native;
 
 namespace DevExpressTableViewTest
 {
@@ -37,13 +39,60 @@ namespace DevExpressTableViewTest
         
         ObservableCollection<Data> users;
         Random random = new Random(DateTime.Now.Millisecond);
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        string result = "绿狮子";
+        public string Result
+        {
+            get => result; set
+            {
+                result = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        string result2 = "庄";
+        public string Result2
+        {
+            get => result2; set
+            {
+                result2 = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        string rbtnTopCurGroup = "";
+        public string RbtnTopCurGroup
+        {
+            get => rbtnTopCurGroup; set
+            {
+                rbtnTopCurGroup = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        string rbtnBottomCurGroup = "";
+        public string RbtnBottomCurGroup
+        {
+            get => rbtnBottomCurGroup; set
+            {
+                rbtnBottomCurGroup = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public ICollectionView CollectionView { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
             users = new ObservableCollection<Data>();
 
-
+            
 
             for (int i = 0; i < 1000; i++)
             {
@@ -77,7 +126,7 @@ namespace DevExpressTableViewTest
             }
 
             users[10].Sortid = -10;
-            users[11].Sortid = -11;
+            users[11].Sortid = -10;
             users[10].Name = "系统1";
             users[11].Name = "系统2";
 
@@ -87,7 +136,18 @@ namespace DevExpressTableViewTest
             CollectionView.MoveCurrentToFirst();
 
             dataGridEx.ItemsSource = CollectionView;
-            var col = dataGridEx.Columns[0];
+            //var col = dataGridEx.Columns[3];
+            FrameworkElement elem = LayoutHelper.FindElementByName(dataGridEx.Bands[0].View, "TopRadioButton");
+            //elem = LayoutHelper.FindElementByType<RadioButton>(col.View);
+            Trace.WriteLine(elem);
+            //var col = dataGridEx.Columns[3].HeaderTemplate.FindName("testRadioButton", dataGridEx.Columns[3]);
+            //var Header = dataGridEx.Columns[0];
+
+            //dataGridEx.DataContext=
+            //dataGridEx.ItemsSource = users;
+
+
+            //var col = dataGridEx.Columns[0];
             //col.EditSettings
             //dataGridEx.ItemsSource = users;
 
@@ -98,42 +158,19 @@ namespace DevExpressTableViewTest
             //cv.SortDescriptions.Add(new SortDescription("id", ListSortDirection.Ascending));
             //dataGridEx.s
             // Creates a new FormatCondition instance.
-            FormatCondition formatRule = new FormatCondition();
+            //FormatCondition formatRule = new FormatCondition();
 
-            // Configures the format condition.
-            formatRule.ValueRule = ConditionRule.GreaterOrEqual;
-            formatRule.Value1 = 500;
-            formatRule.PredefinedFormatName = "GreenFillWithDarkGreenText";
+            //// Configures the format condition.
+            //formatRule.ValueRule = ConditionRule.GreaterOrEqual;
+            //formatRule.Value1 = 500;
+            //formatRule.PredefinedFormatName = "GreenFillWithDarkGreenText";
 
-            // Adds this instance to the FormatConditionCollection.
-            dataGridExView.AddFormatCondition(formatRule);
+            //// Adds this instance to the FormatConditionCollection.
+            //dataGridExView.AddFormatCondition(formatRule);
 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        string result = "绿狮子";
-        public string Result
-        {
-            get => result; set
-            {
-                result = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        string result2 = "庄";
-        public string Result2
-        {
-            get => result2; set
-            {
-                result2 = value;
-                NotifyPropertyChanged();
-            }
-        }
+        
 
         public bool TestB = true;
         ColumnBase lastcol = null;
@@ -220,7 +257,7 @@ namespace DevExpressTableViewTest
             }
 
             
-            CollectionView.Refresh();
+            CollectionView?.Refresh();
             Trace.WriteLine(sw.ElapsedMilliseconds);
             //sw.Restart();
             //dataGridEx.RefreshData();
@@ -250,6 +287,106 @@ namespace DevExpressTableViewTest
             }
         }
 
-      
+
+        bool blockBottomEvent = false;
+        bool blockTopEvent = false;
+        private void TopRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (blockTopEvent) return;
+            var topbtn = (RadioButton)sender;
+
+            blockBottomEvent = true;
+
+            //bottomRadioButtonList.Where(item => !item.GroupName.Equals(topbtn.Content)).ForEach(btn => btn.IsChecked = false);
+            
+            if((string)topbtn.Content == "三元" || (string)topbtn.Content == "四喜")
+                checkButtonList.ForEach(btn => btn.IsChecked = false);
+
+            bottomRadioButtonList.ForEach(btn => btn.IsChecked = false);
+
+            blockBottomEvent = false;
+        }
+
+
+
+        static List<string> Sanyuan = new List<string>() { "狮子","熊猫", "猴子", "兔子", };
+        static List<string> Sixi = new List<string>() { "红", "绿", "黄",};
+
+        string getContentCategoryString(string s)
+        {
+            if (Sanyuan.Contains(s)) return "三元";
+            if (Sixi.Contains(s)) return "四喜";
+            return "";
+        }
+
+        private void BottomRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (blockBottomEvent) return;
+            var bottomBtn = (RadioButton)sender;
+
+            blockTopEvent = true;
+
+            topRadioButtonList.Where(
+                    item => (string)item.Content == getContentCategoryString((string)bottomBtn.Content))
+                    .ForEach(btn => btn.IsChecked = true);
+
+            checkButtonList.ForEach(btn => btn.IsChecked = false);
+
+            blockTopEvent = false;
+        }
+
+
+        private void AnimalCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (blockBottomEvent) return;
+            var checkBox = (CheckBox)sender;
+            blockTopEvent = true;
+
+            topRadioButtonList.Where((item) => (string)item.Content == "三元" || (string)item.Content == "四喜")
+                .ForEach(btn => btn.IsChecked = false);
+            bottomRadioButtonList.ForEach((btn) => btn.IsChecked = false);
+
+            blockTopEvent = false;
+        }
+
+        private void ZXHRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            var btn = (RadioButton)sender;
+        }
+
+        
+
+
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        List<RadioButton> topRadioButtonList = new List<RadioButton>();
+        private void TopRadioButton_Initialized(object sender, EventArgs e)
+        {
+            var btn = sender as RadioButton;
+            topRadioButtonList.Add(btn);
+        }
+
+        List<RadioButton> bottomRadioButtonList = new List<RadioButton>();
+        private void BottomRadioButton_Initialized(object sender, EventArgs e)
+        {
+            var btn = sender as RadioButton;
+            bottomRadioButtonList.Add(btn);
+        }
+
+        List<CheckBox> checkButtonList = new List<CheckBox>();
+        private void BottomCheckButton_Initialized(object sender, EventArgs e)
+        {
+            var btn = sender as CheckBox;
+            checkButtonList.Add(btn);
+        }
+
+        public void CancelAll()
+        {
+            bottomRadioButtonList.Clear();
+            topRadioButtonList.Clear();
+            checkButtonList.Clear();
+        }
     }
 }

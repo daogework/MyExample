@@ -98,13 +98,13 @@
                 <dxg:GridControlBand Header="玩家信息" Width="Auto">
                     <dxg:GridColumn FieldName="ID" Width="85" dxg:BandBase.GridRow="1" Binding="{Binding Id}" EditSettings="{StaticResource CenterText}"/>
                     <dxg:GridColumn FieldName="名字" dxg:BandBase.GridRow="1" Binding="{Binding Name}" EditSettings="{StaticResource CenterText}"/>
-                    <dxg:GridColumn FieldName="总下注" Width="80" dxg:BandBase.GridRow="1" Binding="{Binding 总下注}"  EditSettings="{StaticResource CenterText}"/>
+                    <dxg:GridColumn FieldName="总下注" Width="80" dxg:BandBase.GridRow="1" Binding="{Binding 总下注, Converter={local:TextConverter}}"  EditSettings="{StaticResource CenterText}"/>
                 </dxg:GridControlBand>
 
                 <dxg:GridControlBand Header="三元">
                     <dxg:GridControlBand.HeaderTemplate>
                         <DataTemplate>
-                            <RadioButton Content="三元" GroupName="三元四喜"/>
+                            <RadioButton Content="三元" GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized" Name="TopRadioButton"/>
                         </DataTemplate>
                     </dxg:GridControlBand.HeaderTemplate>
 
@@ -112,7 +112,7 @@
                                     VisibleIndex="0" dxg:BandBase.GridRow="1" Binding="{Binding 狮子}" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Name="radiobtn" Content="狮子" GroupName="三元" />
+                                <RadioButton Content="狮子" GroupName="三元四喜" Checked="BottomRadioButton_Checked" Initialized="BottomRadioButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                     </dxg:GridColumn>
@@ -121,7 +121,7 @@
                         FieldName="熊猫" VisibleIndex="1" dxg:BandBase.GridRow="1" Binding="{Binding 熊猫}" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="熊猫" GroupName="三元"/>
+                                <RadioButton Content="熊猫" GroupName="三元四喜" Checked="BottomRadioButton_Checked" Initialized="BottomRadioButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                     </dxg:GridColumn>
@@ -130,7 +130,7 @@
                                     CellTemplate="{StaticResource SanyuanDataTemplate}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="猴子" GroupName="三元"/>
+                                <RadioButton Content="猴子" GroupName="三元四喜" Checked="BottomRadioButton_Checked" Initialized="BottomRadioButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                     </dxg:GridColumn>
@@ -139,7 +139,7 @@
                                     CellTemplate="{StaticResource SanyuanDataTemplate}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="兔子" GroupName="三元"/>
+                                <RadioButton Content="兔子" GroupName="三元四喜" Checked="BottomRadioButton_Checked" Initialized="BottomRadioButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                     </dxg:GridColumn>
@@ -148,14 +148,14 @@
                 <dxg:GridControlBand Header="四喜" >
                     <dxg:GridControlBand.HeaderTemplate>
                         <DataTemplate>
-                            <RadioButton Content="四喜" GroupName="三元四喜"/>
+                            <RadioButton Content="四喜" GroupName="特殊"  Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
                         </DataTemplate>
                     </dxg:GridControlBand.HeaderTemplate>
 
                     <dxg:GridColumn FieldName="红" VisibleIndex="0" dxg:BandBase.GridRow="1" Binding="{Binding 红}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource SixiDataTemplate}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="红" GroupName="四喜"/>
+                                <RadioButton Content="红" GroupName="三元四喜" Checked="BottomRadioButton_Checked" Initialized="BottomRadioButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                     </dxg:GridColumn>
@@ -163,7 +163,7 @@
                     <dxg:GridColumn FieldName="绿" VisibleIndex="1" dxg:BandBase.GridRow="1" Binding="{Binding 绿}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource SixiDataTemplate}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="绿" GroupName="四喜"/>
+                                <RadioButton Content="绿" GroupName="三元四喜" Checked="BottomRadioButton_Checked" Initialized="BottomRadioButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                     </dxg:GridColumn>
@@ -171,7 +171,7 @@
                     <dxg:GridColumn FieldName="黄" VisibleIndex="2" dxg:BandBase.GridRow="1" Binding="{Binding 黄}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource SixiDataTemplate}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="黄" GroupName="四喜"/>
+                                <RadioButton Content="黄" GroupName="三元四喜" Checked="BottomRadioButton_Checked" Initialized="BottomRadioButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                     </dxg:GridColumn>
@@ -181,9 +181,9 @@
                     <dxg:GridControlBand.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <RadioButton Content="闪电2倍  " GroupName="特殊"/>
-                                <RadioButton Content="闪电3倍  " GroupName="特殊"/>
-                                <RadioButton Content="彩金" GroupName="特殊"/>
+                                <RadioButton Content="闪电2倍  " GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
+                                <RadioButton Content="闪电3倍  " GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
+                                <RadioButton Content="彩金" GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
                             </StackPanel>
 
                         </DataTemplate>
@@ -192,7 +192,7 @@
                     <dxg:GridColumn FieldName="红狮子"  dxg:BandBase.GridRow="1" Binding="{Binding 红狮子}" Name="红狮子" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="红狮子"/>
+                                <CheckBox Content="红狮子" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -218,7 +218,7 @@
                     <dxg:GridColumn FieldName="绿狮子"  dxg:BandBase.GridRow="1" Binding="{Binding 绿狮子}" Name="绿狮子" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="绿狮子"/>
+                                <CheckBox Content="绿狮子" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -244,7 +244,7 @@
                     <dxg:GridColumn FieldName="黄狮子"  dxg:BandBase.GridRow="1" Binding="{Binding 黄狮子}" Name="黄狮子" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="黄狮子"/>
+                                <CheckBox Content="黄狮子" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -270,7 +270,7 @@
                     <dxg:GridColumn FieldName="红熊猫"  dxg:BandBase.GridRow="1" Binding="{Binding 红熊猫}" Name="红熊猫" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="红熊猫"/>
+                                <CheckBox Content="红熊猫" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -296,7 +296,7 @@
                     <dxg:GridColumn FieldName="绿熊猫"  dxg:BandBase.GridRow="1" Binding="{Binding 绿熊猫}" Name="绿熊猫" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="绿熊猫"/>
+                                <CheckBox Content="绿熊猫" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -322,7 +322,7 @@
                     <dxg:GridColumn FieldName="黄熊猫"  dxg:BandBase.GridRow="1" Binding="{Binding 黄熊猫}" Name="黄熊猫" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="黄熊猫"/>
+                                <CheckBox Content="黄熊猫" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -348,7 +348,7 @@
                     <dxg:GridColumn FieldName="红猴子"  dxg:BandBase.GridRow="1" Binding="{Binding 红猴子}" Name="红猴子" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="红猴子"/>
+                                <CheckBox Content="红猴子" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -374,7 +374,7 @@
                     <dxg:GridColumn FieldName="绿猴子"  dxg:BandBase.GridRow="1" Binding="{Binding 绿猴子}" Name="绿猴子" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="绿猴子"/>
+                                <CheckBox Content="绿猴子" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -400,7 +400,7 @@
                     <dxg:GridColumn FieldName="黄猴子"  dxg:BandBase.GridRow="1" Binding="{Binding 黄猴子}" Name="黄猴子" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="黄猴子"/>
+                                <CheckBox Content="黄猴子" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -426,7 +426,7 @@
                     <dxg:GridColumn FieldName="红兔子"  dxg:BandBase.GridRow="1" Binding="{Binding 红兔子}" Name="红兔子" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="红兔子"/>
+                                <CheckBox Content="红兔子" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -452,7 +452,7 @@
                     <dxg:GridColumn FieldName="绿兔子"  dxg:BandBase.GridRow="1" Binding="{Binding 绿兔子}" Name="绿兔子" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="绿兔子"/>
+                                <CheckBox Content="绿兔子" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -478,7 +478,7 @@
                     <dxg:GridColumn FieldName="黄兔子"  dxg:BandBase.GridRow="1" Binding="{Binding 黄兔子}" Name="黄兔子" EditSettings="{StaticResource CenterText}">
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox Content="黄兔子"/>
+                                <CheckBox Content="黄兔子" Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -501,12 +501,12 @@
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
 
-
-
+                </dxg:GridControlBand>
+                <dxg:GridControlBand>
                     <dxg:GridColumn FieldName="庄"  dxg:BandBase.GridRow="1" Binding="{Binding 庄}" Name="庄" EditSettings="{StaticResource CenterText}" >
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="庄" GroupName="庄闲和"/>
+                                <RadioButton Content="庄" GroupName="庄闲和" Checked="ZXHRadioButton_Checked"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -529,10 +529,11 @@
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
 
-                    <dxg:GridColumn FieldName="闲"  dxg:BandBase.GridRow="1" Binding="{Binding 闲}" Name="闲" EditSettings="{StaticResource CenterText}" >
+                    <dxg:GridColumn
+                        FieldName="闲"  dxg:BandBase.GridRow="1" Binding="{Binding 闲}" Name="闲" EditSettings="{StaticResource CenterText}" >
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="闲" GroupName="庄闲和"/>
+                                <RadioButton Content="闲" GroupName="庄闲和" Checked="ZXHRadioButton_Checked"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -550,6 +551,10 @@
                                         <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
                                         <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value}" Value="闲">
+                                        <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
+                                        <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                                    </DataTrigger>
                                 </DataTemplate.Triggers>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
@@ -558,7 +563,7 @@
                     <dxg:GridColumn FieldName="和"  dxg:BandBase.GridRow="1" Binding="{Binding 和}" Name="和" EditSettings="{StaticResource CenterText}" >
                         <dxg:GridColumn.HeaderTemplate>
                             <DataTemplate>
-                                <RadioButton Content="和" GroupName="庄闲和"/>
+                                <RadioButton Content="和" GroupName="庄闲和" Checked="ZXHRadioButton_Checked"/>
                             </DataTemplate>
                         </dxg:GridColumn.HeaderTemplate>
                         <dxg:GridColumn.CellTemplate>
@@ -580,9 +585,6 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-
-
-
                 </dxg:GridControlBand>
 
             </dxg:GridControl.Bands>
