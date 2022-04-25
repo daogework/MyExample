@@ -101,25 +101,25 @@ namespace DevExpressTableViewTest
                 {
                     Id = random.Next(),
                     Name = "" + random.Next(),
-                    总下注 = random.Next(),
-                    狮子 = random.Next(),
-                    熊猫 = random.Next(),
-                    猴子 = random.Next(),
-                    兔子 = random.Next(),
-                    红 = random.Next(),
-                    绿 = random.Next(),
-                    黄 = random.Next(),
-                    红狮子 = random.Next(),
-                    绿狮子 = random.Next(),
-                    黄狮子 = random.Next(),
-                    红熊猫 = random.Next(),
-                    绿熊猫 = random.Next(),
-                    黄熊猫 = random.Next(),
-                    红猴子 = random.Next(),
-                    绿猴子 = random.Next(),
-                    黄猴子 = random.Next(),
-                    红兔子 = random.Next(),
-                    绿兔子 = random.Next(),
+                    //总下注 = random.Next(),
+                    //狮子 = random.Next(),
+                    //熊猫 = random.Next(),
+                    //猴子 = random.Next(),
+                    //兔子 = random.Next(),
+                    //红 = random.Next(),
+                    //绿 = random.Next(),
+                    //黄 = random.Next(),
+                    //红狮子 = random.Next(),
+                    //绿狮子 = random.Next(),
+                    //黄狮子 = random.Next(),
+                    //红熊猫 = random.Next(),
+                    //绿熊猫 = random.Next(),
+                    //黄熊猫 = random.Next(),
+                    //红猴子 = random.Next(),
+                    //绿猴子 = random.Next(),
+                    //黄猴子 = random.Next(),
+                    //红兔子 = random.Next(),
+                    //绿兔子 = random.Next(),
                     黄兔子 = random.Next(),
                     //V20 = random.Next()
                 });
@@ -140,33 +140,7 @@ namespace DevExpressTableViewTest
             FrameworkElement elem = LayoutHelper.FindElementByName(dataGridEx.Bands[0].View, "TopRadioButton");
             //elem = LayoutHelper.FindElementByType<RadioButton>(col.View);
             Trace.WriteLine(elem);
-            //var col = dataGridEx.Columns[3].HeaderTemplate.FindName("testRadioButton", dataGridEx.Columns[3]);
-            //var Header = dataGridEx.Columns[0];
 
-            //dataGridEx.DataContext=
-            //dataGridEx.ItemsSource = users;
-
-
-            //var col = dataGridEx.Columns[0];
-            //col.EditSettings
-            //dataGridEx.ItemsSource = users;
-
-            //dataGrid.getb
-            //dataGrid.as
-            //var cv = CollectionViewSource.GetDefaultView(dataGridEx.ItemsSource);
-            //cv.SortDescriptions.Add(new SortDescription("sortid", ListSortDirection.Ascending));
-            //cv.SortDescriptions.Add(new SortDescription("id", ListSortDirection.Ascending));
-            //dataGridEx.s
-            // Creates a new FormatCondition instance.
-            //FormatCondition formatRule = new FormatCondition();
-
-            //// Configures the format condition.
-            //formatRule.ValueRule = ConditionRule.GreaterOrEqual;
-            //formatRule.Value1 = 500;
-            //formatRule.PredefinedFormatName = "GreenFillWithDarkGreenText";
-
-            //// Adds this instance to the FormatConditionCollection.
-            //dataGridExView.AddFormatCondition(formatRule);
 
         }
 
@@ -178,15 +152,13 @@ namespace DevExpressTableViewTest
         public static SolidColorBrush 最小值背景色 = Utils.BushFromStringColor("#FF9999");
         public static SolidColorBrush 最大值背景色 = Utils.BushFromStringColor("#E2EFDA");
 
-        public static SolidColorBrush 负值字体颜色 = Utils.BushFromStringColor("#C00000");
-        public static SolidColorBrush 正值字体颜色 = Utils.BushFromStringColor("#00B050");
+        //public static SolidColorBrush 负值字体颜色 = Utils.BushFromStringColor("#C00000");
+        //public static SolidColorBrush 正值字体颜色 = Utils.BushFromStringColor("#00B050");
         private void view_CustomCellAppearance(object sender, CustomCellAppearanceEventArgs e)
         {
-
             if (e.Property == TextElement.BackgroundProperty)
             {
                 var data = (Data)dataGridEx.GetRow(e.RowHandle);
-                //dataGridEx.setc
                 if (data.MinFieldName == e.Column.FieldName)
                 {
                     e.Result = 最小值背景色;
@@ -196,33 +168,8 @@ namespace DevExpressTableViewTest
                 {
                     e.Result = 最大值背景色;
                     e.Handled = true;
-                    //var CellStyle = e.Column.CellStyle;
-
                 }
             }
-            //else if (e.Property == TextElement.ForegroundProperty)
-            //{
-            //    if (e.Column != null)
-            //    {
-            //        var basevalue = dataGridEx.GetCellValue(e.RowHandle, (GridColumn)e.Column);
-            //        if (basevalue is long)
-            //        {
-            //            var value = (long)basevalue;
-            //            if (value > 0)
-            //            {
-            //                e.Result = 正值字体颜色;
-            //                e.Handled = true;
-            //            }
-            //            else if (value < 0)
-            //            {
-            //                e.Result = 负值字体颜色;
-            //                e.Handled = true;
-            //            }
-            //        }
-
-            //    }
-
-            //}
         }
 
         private void SimpleButton_Click(object sender, RoutedEventArgs e)
