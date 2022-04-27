@@ -37,7 +37,7 @@ namespace DevExpressTableViewTest
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         
-        ObservableCollection<Data> users;
+        ObservableCollection<SLWHData> users;
         Random random = new Random(DateTime.Now.Millisecond);
 
 
@@ -90,14 +90,14 @@ namespace DevExpressTableViewTest
         public MainWindow()
         {
             InitializeComponent();
-            users = new ObservableCollection<Data>();
+            users = new ObservableCollection<SLWHData>();
 
             
 
             for (int i = 0; i < 2000; i++)
             {
 
-                users.Add(new Data
+                users.Add(new SLWHData
                 {
                     Id = random.Next(),
                     Name = "" + random.Next(),
@@ -158,7 +158,7 @@ namespace DevExpressTableViewTest
         {
             if (e.Property == TextElement.BackgroundProperty)
             {
-                var data = (Data)dataGridEx.GetRow(e.RowHandle);
+                var data = (SLWHData)dataGridEx.GetRow(e.RowHandle);
                 if (data.MinFieldName == e.Column.FieldName)
                 {
                     e.Result = 最小值背景色;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DevExpressTableViewTest
 {
-    class Data : BindableBase
+    class SLWHData : BindableBase
     {
         public void Refresh()
         {
@@ -295,6 +295,98 @@ namespace DevExpressTableViewTest
         public string MinFieldName { get; private set; } = "";
 
         
+        public void SetValueByIndex(int index, long value)
+        {
+            switch (index)
+            {
+                case 0:
+                    狮子 = value;
+                    break;
 
+                case 1:
+                    熊猫 = value;
+                    break;
+
+                case 2:
+                    猴子 = value;
+                    break;
+
+                case 3:
+                    兔子 = value;
+                    break;
+
+                case 4:
+                    红 = value;
+                    break;
+
+                case 5:
+                    绿 = value;
+                    break;
+
+                case 6:
+                    黄 = value;
+                    break;
+
+                case 7:
+                    红狮子 = value;
+                    break;
+
+                case 8:
+                    绿狮子 = value;
+                    break;
+
+                case 9:
+                    黄狮子 = value;
+                    break;
+
+                case 10:
+                    红熊猫 = value;
+                    break;
+
+                case 11:
+                    绿熊猫 = value;
+                    break;
+
+                case 12:
+                    黄熊猫 = value;
+                    break;
+
+                case 13:
+                    红猴子 = value;
+                    break;
+
+                case 14:
+                    绿猴子 = value;
+                    break;
+
+                case 15:
+                    黄猴子 = value;
+                    break;
+
+                case 16:
+                    红兔子 = value;
+                    break;
+
+                case 17:
+                    绿兔子 = value;
+                    break;
+
+                case 18:
+                    黄兔子 = value;
+                    break;
+
+                case 19:
+                    庄 = value;
+                    break;
+
+                case 20:
+                    闲 = value;
+                    break;
+
+                case 21:
+                    和 = value;
+                    break;
+            }
+        }
     }
 }
