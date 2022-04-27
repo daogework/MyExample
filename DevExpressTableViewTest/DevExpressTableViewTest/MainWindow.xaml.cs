@@ -26,7 +26,7 @@ using DevExpress.Xpf.Core.ConditionalFormatting;
 using DevExpress.Xpf.Core.Native;
 using DevExpress.Mvvm.Native;
 
-namespace DevExpressTableViewTest
+namespace 控制器
 {
 
     

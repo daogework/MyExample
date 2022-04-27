@@ -4,7 +4,7 @@
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
-        xmlns:local="clr-namespace:DevExpressTableViewTest" x:Class="DevExpressTableViewTest.MainWindow"
+        xmlns:local="clr-namespace:控制器" x:Class="控制器.MainWindow"
         xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" 
 
     Title="MainWindow" Height="600" Width="1800" x:Name="MyMainWindow">

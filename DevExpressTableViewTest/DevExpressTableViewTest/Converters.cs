@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media;
 
-namespace DevExpressTableViewTest
+namespace 控制器
 {
 
     public class 正或负 : MarkupExtension, IValueConverter

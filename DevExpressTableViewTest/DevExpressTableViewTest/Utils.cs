@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace DevExpressTableViewTest
+namespace 控制器
 {
     public static class Utils
     {

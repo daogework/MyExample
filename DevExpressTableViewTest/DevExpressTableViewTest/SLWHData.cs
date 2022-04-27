@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevExpressTableViewTest
+namespace 控制器
 {
     class SLWHData : BindableBase
     {
