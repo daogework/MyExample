@@ -25,6 +25,7 @@ using DevExpress.Xpf.Grid;
 using DevExpress.Xpf.Core.ConditionalFormatting;
 using DevExpress.Xpf.Core.Native;
 using DevExpress.Mvvm.Native;
+using DevExpress.Xpf.Core;
 
 namespace 控制器
 {
@@ -90,11 +91,12 @@ namespace 控制器
         public MainWindow()
         {
             InitializeComponent();
+            ThemeManager.SetTheme(this, Theme.Seven);
             users = new ObservableCollection<SLWHData>();
 
             
 
-            for (int i = 0; i < 2000; i++)
+            for (int i = 0; i < 100; i++)
             {
 
                 users.Add(new SLWHData
@@ -136,12 +138,17 @@ namespace 控制器
             CollectionView.MoveCurrentToFirst();
 
             dataGridEx.ItemsSource = CollectionView;
-            //var col = dataGridEx.Columns[3];
+              
             FrameworkElement elem = LayoutHelper.FindElementByName(dataGridEx.Bands[0].View, "TopRadioButton");
             //elem = LayoutHelper.FindElementByType<RadioButton>(col.View);
             Trace.WriteLine(elem);
 
-
+            //狮子.Width
+            //GridColumn.WidthProperty
+            //var Value=狮子GridColumn.Width.Value;
+            //Value = 狮子GridColumn..Value;
+            //Trace.WriteLine(Value);
+            //dataGridEx.Columns[0].FieldName;
         }
 
         
@@ -331,6 +338,10 @@ namespace 控制器
         {
             var btn = sender as RadioButton;
             bottomRadioButtonList.Add(btn);
+            if ((string)btn.Content == "狮子")
+            {
+                Trace.WriteLine(btn.Width);
+            }
         }
 
         List<CheckBox> checkButtonList = new List<CheckBox>();

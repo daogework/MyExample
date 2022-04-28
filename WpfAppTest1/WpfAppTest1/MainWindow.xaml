@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfAppTest1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppTest1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <!--<RadioButton Content="test" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Background="AliceBlue" VerticalContentAlignment="Center" VerticalAlignment="Stretch"/>-->
+        <StackPanel x:Name="stackPanel" Margin="0,167,134,187" Background="AntiqueWhite">
+            <RadioButton Content="test" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"  Background="Red" VerticalContentAlignment="Center" BorderBrush="Red">
+                <RadioButton.ContentTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="test" HorizontalAlignment="Center"></TextBlock>
+                    </DataTemplate>
+                </RadioButton.ContentTemplate>
+            </RadioButton>
+        </StackPanel>
+        <DockPanel LastChildFill="False" Width="95" Height="100" Margin="619,161,86,174"/>
+
+    </Grid>
+</Window>
