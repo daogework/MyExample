@@ -292,7 +292,7 @@ namespace 控制器
             blockTopEvent = true;
 
             topRadioButtonList.Where(
-                    item => (string)item.Content == getContentCategoryString((string)bottomBtn.Content))
+                    item => ((string)item.Content).Contains(getContentCategoryString((string)bottomBtn.Content)))
                     .ForEach(btn => btn.IsChecked = true);
 
             checkButtonList.ForEach(btn => btn.IsChecked = false);

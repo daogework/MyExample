@@ -20,10 +20,25 @@ namespace WpfAppTest1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string Result { get; set; } = "0";
         public MainWindow()
         {
             InitializeComponent();
             //stackPanel.Width;
+        }
+
+        List<Border> borders = new List<Border>();  
+
+        private void PART_CellBorder_Initialized(object sender, EventArgs e)
+        {
+            borders.Add(sender as Border);
+        }
+
+        bool b; 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            b = !b;
+            borders[0].BorderBrush = b? new SolidColorBrush(Colors.White): new SolidColorBrush(Colors.Black);
         }
     }
 }

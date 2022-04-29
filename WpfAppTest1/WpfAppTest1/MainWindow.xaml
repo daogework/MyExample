@@ -5,17 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppTest1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800" Name="MyMainWindow">
+
+    <Window.Resources>
+        <DataTemplate x:Key="testTemplate">
+            <Grid>
+                <Border x:Name="PART_CellBorder" BorderBrush="Blue" BorderThickness="1" Initialized="PART_CellBorder_Initialized"/>
+                <TextBlock Text="test" HorizontalAlignment="Center"></TextBlock>
+            </Grid>
+            <!--<DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="0">
+                    <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="White"/>
+                    <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Result, ElementName=MyMainWindow}" Value="1">
+                    <Setter TargetName="PART_CellBorder" Property="BorderBrush" Value="Orange"/>
+                    <Setter TargetName="PART_CellBorder" Property="BorderThickness" Value="1"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>-->
+        </DataTemplate>
+    </Window.Resources>
+
+        <Grid>
         <!--<RadioButton Content="test" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Background="AliceBlue" VerticalContentAlignment="Center" VerticalAlignment="Stretch"/>-->
         <StackPanel x:Name="stackPanel" Margin="0,167,134,187" Background="AntiqueWhite">
-            <RadioButton Content="test" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"  Background="Red" VerticalContentAlignment="Center" BorderBrush="Red">
-                <RadioButton.ContentTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="test" HorizontalAlignment="Center"></TextBlock>
-                    </DataTemplate>
-                </RadioButton.ContentTemplate>
+            <RadioButton Content="test" ContentTemplate="{StaticResource testTemplate}"
+                         HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"  Background="Red" VerticalContentAlignment="Center" BorderBrush="Red">
             </RadioButton>
+            <RadioButton Content="test" ContentTemplate="{StaticResource testTemplate}"
+                         HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"  Background="Red" VerticalContentAlignment="Center" BorderBrush="Red">
+            </RadioButton>
+            <CheckBox Content="test" 
+                      HorizontalContentAlignment="Stretch" Background="Yellow"
+                      >
+                <CheckBox.ContentTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Content, Mode=OneTime, RelativeSource={RelativeSource AncestorType=CheckBox}}" 
+                       HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" />
+                    </DataTemplate>
+                </CheckBox.ContentTemplate>
+            </CheckBox>
+            <Button Content="testbtn" Click="Button_Click"></Button>
         </StackPanel>
         <DockPanel LastChildFill="False" Width="95" Height="100" Margin="619,161,86,174"/>
 
