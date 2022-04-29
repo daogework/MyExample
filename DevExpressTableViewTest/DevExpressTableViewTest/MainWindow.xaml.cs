@@ -301,15 +301,52 @@ namespace 控制器
         }
 
 
+        
+        //class ColumData
+        //{
+        //    public GridColumn column;
+        //    public CheckBox checkBox;
+        //}
+        //List<ColumData> columDatalist = new List<ColumData>();
         private void AnimalCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (blockBottomEvent) return;
             var checkBox = (CheckBox)sender;
             blockTopEvent = true;
 
-            topRadioButtonList.Where((item) => (string)item.Content == "三元" || (string)item.Content == "四喜")
+            topRadioButtonList.Where((item) => ((string)item.Content).Contains("三元")  || ((string)item.Content).Contains("四喜"))
                 .ForEach(btn => btn.IsChecked = false);
             bottomRadioButtonList.ForEach((btn) => btn.IsChecked = false);
+
+
+
+            List<GridColumn> sortedList = new List<GridColumn>();
+            
+            for (int i = 0; i < checkButtonList.Count; i++)
+            {
+                var btn = checkButtonList[i];
+                if (btn.IsChecked.Value)
+                {
+                    var col = dataGridEx.Columns.First(item => item.FieldName == (string)btn.Content);
+                    sortedList.Add(col);
+                }
+            }
+            for (int i = 0; i < checkButtonList.Count; i++)
+            {
+                var btn = checkButtonList[i];
+                if (!btn.IsChecked.Value)
+                {
+                    var col = dataGridEx.Columns.First(item => item.FieldName == (string)btn.Content);
+                    sortedList.Add(col);
+                }
+            }
+
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                var col = sortedList[i];
+                col.VisibleIndex = 10 + i;
+            }
+
 
             blockTopEvent = false;
         }
@@ -347,8 +384,9 @@ namespace 控制器
         List<CheckBox> checkButtonList = new List<CheckBox>();
         private void BottomCheckButton_Initialized(object sender, EventArgs e)
         {
-            var btn = sender as CheckBox;
-            checkButtonList.Add(btn);
+            var checkBox = sender as CheckBox;
+            checkButtonList.Add(checkBox);
+            
         }
 
         public void CancelAll()

@@ -88,8 +88,8 @@
 
         <DataTemplate x:Key="AnimalHeader">
             <CheckBox Content="{Binding GridColumn.FieldName, Mode=OneTime, RelativeSource={RelativeSource AncestorType=dxg:GridColumnHeader}}" 
-                      HorizontalContentAlignment="Stretch"
-                      Checked="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized" HorizontalAlignment="Center" VerticalAlignment="Center">
+                      HorizontalContentAlignment="Stretch" 
+                      Click="AnimalCheckBox_Checked" Initialized="BottomCheckButton_Initialized" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <CheckBox.ContentTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Content, Mode=OneTime, RelativeSource={RelativeSource AncestorType=CheckBox}}" 
@@ -197,9 +197,10 @@
                     <dxg:GridControlBand.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <RadioButton Content="闪电2倍  " GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
-                                <RadioButton Content="闪电3倍  " GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
-                                <RadioButton Content="彩金  " GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
+                                <RadioButton Content=" 闪电2倍  " GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
+                                <RadioButton Content=" 闪电3倍  " GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
+                                <RadioButton Content=" 彩金  " GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
+                                <RadioButton Content=" 无  " GroupName="特殊" Checked="TopRadioButton_Checked" Initialized="TopRadioButton_Initialized"/>
                             </StackPanel>
 
                         </DataTemplate>
