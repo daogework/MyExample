@@ -99,6 +99,10 @@
             </CheckBox>
         </DataTemplate>
 
+        <DataTemplate x:Key="NormalCell">
+            <dxe:TextEdit Name="PART_Editor" EditValue="{Binding Value}" HorizontalAlignment="Center"/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Grid>
@@ -117,7 +121,7 @@
                 <Setter Property="Visibility" Value="Collapsed"/>
             </Style>
         </Grid.Resources>
-        
+
         <dxg:GridControl ItemsSource="{Binding}"
                          x:Name="dataGridEx" SelectionMode="Cell" 
                          AllowColumnMRUFilterList="False" 
@@ -128,13 +132,20 @@
 
             <dxg:GridControl.Bands>
                 <dxg:GridControlBand Header="玩家信息" Width="Auto">
-                    <dxg:GridColumn FieldName="置顶" Width="15" dxg:BandBase.GridRow="1" Binding="{Binding Sortid, Converter={local:TopTextConverter}}"  EditSettings="{StaticResource CenterText}"/>
-                    <dxg:GridColumn FieldName="ID" Width="90" dxg:BandBase.GridRow="1" Binding="{Binding Id}" EditSettings="{StaticResource CenterText}"/>
-                    <dxg:GridColumn FieldName="名字" Width="90" dxg:BandBase.GridRow="1" Binding="{Binding Name}" EditSettings="{StaticResource CenterText}"/>
-                    <dxg:GridColumn FieldName="总下注" dxg:BandBase.GridRow="1" Binding="{Binding 总下注, Converter={local:TextConverter}}"  EditSettings="{StaticResource CenterText}"/>
+                    <dxg:GridColumn FieldName="置顶" CellTemplate="{StaticResource NormalCell}" HorizontalHeaderContentAlignment="Center" Width="25" dxg:BandBase.GridRow="1" Binding="{Binding Sortid, Converter={local:TopTextConverter}}"  EditSettings="{StaticResource CenterText}"/>
+                    <dxg:GridColumn FieldName="ID" CellTemplate="{StaticResource NormalCell}" HorizontalHeaderContentAlignment="Center"  Width="90" dxg:BandBase.GridRow="1" Binding="{Binding Id}" EditSettings="{StaticResource CenterText}"/>
+                    <dxg:GridColumn FieldName="名字" CellTemplate="{StaticResource NormalCell}" HorizontalHeaderContentAlignment="Center" Width="90" dxg:BandBase.GridRow="1" Binding="{Binding Name}" EditSettings="{StaticResource CenterText}"/>
+                    <dxg:GridColumn FieldName="总下注" dxg:BandBase.GridRow="1" Binding="{Binding 总下注}" HorizontalHeaderContentAlignment="Center"
+                                    EditSettings="{StaticResource CenterText}">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:TextEdit Name="PART_Editor" EditValue="{Binding Value, Converter={local:TextConverter}}" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
                 </dxg:GridControlBand>
-                
-                
+
+
 
                 <dxg:GridControlBand Header="三元">
                     <dxg:GridControlBand.HeaderTemplate>
@@ -165,8 +176,8 @@
                                     CellTemplate="{StaticResource SanyuanDataTemplate}">
                     </dxg:GridColumn>
                 </dxg:GridControlBand>
-                
-                
+
+
 
                 <dxg:GridControlBand Header="四喜" >
                     <dxg:GridControlBand.HeaderTemplate>
@@ -190,8 +201,8 @@
                                     dxg:BandBase.GridRow="1" Binding="{Binding 黄}" EditSettings="{StaticResource CenterText}"  CellTemplate="{StaticResource SixiDataTemplate}">
                     </dxg:GridColumn>
                 </dxg:GridControlBand>
-                
-                
+
+
 
                 <dxg:GridControlBand Header="出奖" >
                     <dxg:GridControlBand.HeaderTemplate>
@@ -647,20 +658,13 @@
             </dxg:GridControl.Bands>
             <dxg:GridControl.View>
 
-                <dxg:TreeListView IsColumnMenuEnabled="False" AllowColumnMoving="False"
+                <dxg:TreeListView IsColumnMenuEnabled="False" AllowColumnMoving="False" TextOptions.TextFormattingMode="Display"
                     AllowSorting="False" CustomCellAppearance="view_CustomCellAppearance" AllowEditing="False">
                     <dxg:TreeListView.RowCellMenuCustomizations >
                         <dxb:BarButtonItem Content="{Binding CurrentItem, ElementName=dataGridEx, Converter={local:TopMenuConverter}}" ItemClick="BarButtonItem_Top" Glyph="{dx:DXImage SvgImages/Arrows/MoveUp.svg}"/>
                         <dxb:BarButtonItem Content="复制玩家ID" ItemClick="BarButtonItem_Copy" Glyph="{dx:DXImage SvgImages/Edit/Copy.svg}"/>
                     </dxg:TreeListView.RowCellMenuCustomizations>
                 </dxg:TreeListView>
-
-                
-                <!--<dxg:TableView 
-                    IsColumnMenuEnabled="False" AllowColumnMoving="False" ShowGroupPanel="False"
-                    AllowSorting="False" CustomCellAppearance="view_CustomCellAppearance" AllowEditing="False"
-                    ShowTotalSummary="False" AllowCountTotalSummary="False" ShowDragDropHint="False" AutoExpandOnDrag="False"/>-->
-
 
             </dxg:GridControl.View>
         </dxg:GridControl>
@@ -669,4 +673,5 @@
         <dx:SimpleButton Content="清除" HorizontalAlignment="Left" Height="30" Margin="721,248,0,0" VerticalAlignment="Top" Width="114" Click="SimpleButton_Click_1" />
 
     </Grid>
+    
 </Window>

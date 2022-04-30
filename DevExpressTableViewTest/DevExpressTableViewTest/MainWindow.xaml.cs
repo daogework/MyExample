@@ -402,7 +402,7 @@ namespace 控制器
             checkButtonList.Clear();
         }
 
-        private void BarButtonItem_Copy(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        private void BarButtonItem_Copy(object sender, ItemClickEventArgs e)
         {
             var item = (SLWHData)dataGridEx.CurrentItem;
             Clipboard.SetDataObject(item.Id);
