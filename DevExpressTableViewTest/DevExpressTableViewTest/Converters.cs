@@ -10,6 +10,61 @@ using System.Windows.Media;
 
 namespace 控制器
 {
+    public class TopMenuConverter : MarkupExtension, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            
+            var data = value as SLWHData;
+            if (data != null)
+            {
+                if (data.Sortid <= -10)
+                {
+                    return "系统不可取消置顶";
+                }
+                if (data.Sortid < 0)
+                {
+                    return $"取消置顶 (昵称:{data.Name} ID:{data.Id})";
+                }
+                else
+                {
+                    return $"置顶 (昵称:{data.Name} ID:{data.Id})";
+                }
+            }
+            return "数据异常";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
+    public class TopTextConverter : MarkupExtension, IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((int)value < 0)
+            {
+                return "↑";
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
     public class IsTargetAnimal : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

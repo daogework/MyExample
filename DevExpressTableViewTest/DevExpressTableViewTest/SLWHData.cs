@@ -13,7 +13,11 @@ namespace 控制器
         {
             RaisePropertiesChanged();
         }
-        public int Sortid { get; set; } = 0;
+        private int sortid = 0;
+        public int Sortid { get=> sortid; set {
+                sortid = value;
+                RaisePropertyChanged("Sortid");
+            } }
         public int Id { get; set; }
         public string Name { get; set; } = "";
         public long 总下注 { get; set; } = 0;

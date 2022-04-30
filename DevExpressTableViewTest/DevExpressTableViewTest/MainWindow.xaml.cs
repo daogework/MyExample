@@ -26,6 +26,7 @@ using DevExpress.Xpf.Core.ConditionalFormatting;
 using DevExpress.Xpf.Core.Native;
 using DevExpress.Mvvm.Native;
 using DevExpress.Xpf.Core;
+using DevExpress.Xpf.Bars;
 
 namespace 控制器
 {
@@ -149,9 +150,13 @@ namespace 控制器
             //Value = 狮子GridColumn..Value;
             //Trace.WriteLine(Value);
             //dataGridEx.Columns[0].FieldName;
+            //(dataGridEx.View as GridView).
         }
 
-        
+        private void View_ShowGridMenu(object sender, GridMenuEventArgs e)
+        {
+            
+        }
 
         public bool TestB = true;
         ColumnBase lastcol = null;
@@ -166,6 +171,7 @@ namespace 控制器
             if (e.Property == TextElement.BackgroundProperty)
             {
                 var data = (SLWHData)dataGridEx.GetRow(e.RowHandle);
+                if (data == null) return;
                 if (data.MinFieldName == e.Column.FieldName)
                 {
                     e.Result = 最小值背景色;
@@ -187,7 +193,7 @@ namespace 控制器
             Stopwatch sw = Stopwatch.StartNew();
             foreach (var item in users)
             {
-                item.Id = random.Next();
+                //item.Id = random.Next();
                 item.总下注 = random.Next();
                 item.狮子 = random.Next(-20_0000_0000, 20_0000_0000);
                 item.熊猫 = random.Next(-20_0000_0000, 20_0000_0000);
@@ -302,12 +308,7 @@ namespace 控制器
 
 
         
-        //class ColumData
-        //{
-        //    public GridColumn column;
-        //    public CheckBox checkBox;
-        //}
-        //List<ColumData> columDatalist = new List<ColumData>();
+       
         private void AnimalCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (blockBottomEvent) return;
@@ -384,7 +385,12 @@ namespace 控制器
         List<CheckBox> checkButtonList = new List<CheckBox>();
         private void BottomCheckButton_Initialized(object sender, EventArgs e)
         {
+            
             var checkBox = sender as CheckBox;
+
+            //
+
+
             checkButtonList.Add(checkBox);
             
         }
@@ -395,5 +401,37 @@ namespace 控制器
             topRadioButtonList.Clear();
             checkButtonList.Clear();
         }
+
+        private void BarButtonItem_Copy(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            var item = (SLWHData)dataGridEx.CurrentItem;
+            Clipboard.SetDataObject(item.Id);
+
+        }
+
+        private void BarButtonItem_Top(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            var barButtonItem = sender as BarButtonItem;
+            var data = (SLWHData)dataGridEx.CurrentItem;
+            //MessageBox.Show(string.Format("Delete {0}?", item.Id), "Are you sure?");
+            if (data.Sortid <= -10)
+            {
+                barButtonItem.Content= "系统不可取消置顶";
+                return;
+            }
+            if (data.Sortid >= 0)
+            {
+                data.Sortid = -5;
+            }
+            else
+            {
+                data.Sortid = 0;
+
+            }
+            dataGridEx.CurrentItem = null;
+            CollectionView.Refresh();
+        }
+
+
     }
 }
