@@ -409,7 +409,7 @@ namespace 控制器
 
         }
 
-        private void BarButtonItem_Top(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        private void BarButtonItem_Top(object sender, ItemClickEventArgs e)
         {
             var barButtonItem = sender as BarButtonItem;
             var data = (SLWHData)dataGridEx.CurrentItem;
