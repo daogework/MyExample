@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,21 @@ namespace WpfAppTest1
     public partial class MainWindow : Window
     {
         public string Result { get; set; } = "0";
+        public event Action ZXH_Event;
         public MainWindow()
         {
             InitializeComponent();
             //stackPanel.Width;
+            var b = true;
+            var s = b.ToString();
+            ZXH_Event += MainWindow_ZXH_Event;
+            ZXH_Event();
+            ZXH_Event -= MainWindow_ZXH_Event;
+        }
+
+        private void MainWindow_ZXH_Event()
+        {
+            
         }
 
         List<Border> borders = new List<Border>();  
@@ -39,6 +51,16 @@ namespace WpfAppTest1
         {
             b = !b;
             borders[0].BorderBrush = b? new SolidColorBrush(Colors.White): new SolidColorBrush(Colors.Black);
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Trace.WriteLine($"{sender}");
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            test_check_btn.IsChecked = true;
         }
     }
 }

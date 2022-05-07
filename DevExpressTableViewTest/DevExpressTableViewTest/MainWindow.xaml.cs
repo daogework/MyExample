@@ -140,9 +140,7 @@ namespace 控制器
 
             dataGridEx.ItemsSource = CollectionView;
               
-            FrameworkElement elem = LayoutHelper.FindElementByName(dataGridEx.Bands[0].View, "TopRadioButton");
-            //elem = LayoutHelper.FindElementByType<RadioButton>(col.View);
-            Trace.WriteLine(elem);
+            
 
             //狮子.Width
             //GridColumn.WidthProperty
@@ -229,7 +227,7 @@ namespace 控制器
         List<string> testList = new List<string>() { 
         "三元","四喜",
         "红狮子",
-        "绿狮子",
+        "绿狮子   ",
         "黄狮子",
         };
         int testIndex = 0;
@@ -345,7 +343,7 @@ namespace 控制器
             for (int i = 0; i < sortedList.Count; i++)
             {
                 var col = sortedList[i];
-                col.VisibleIndex = 10 + i;
+                col.VisibleIndex = 11 + i;
             }
 
 
@@ -432,6 +430,13 @@ namespace 控制器
             CollectionView.Refresh();
         }
 
-
+        private void dataGridEx_Loaded(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(bottomRadioButtonList.Count);
+            var band = 出奖;
+            //FrameworkElement elem = LayoutHelper.FindElementByName(dataGridEx.band, "出奖");
+            ////elem = LayoutHelper.FindElementByType<RadioButton>(col.View);
+            //Trace.WriteLine(elem);
+        }
     }
 }

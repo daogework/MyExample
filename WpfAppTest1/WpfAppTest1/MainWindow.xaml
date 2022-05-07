@@ -26,7 +26,7 @@
         </DataTemplate>
     </Window.Resources>
 
-        <Grid>
+        <Grid Loaded="Grid_Loaded">
         <!--<RadioButton Content="test" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Background="AliceBlue" VerticalContentAlignment="Center" VerticalAlignment="Stretch"/>-->
         <StackPanel x:Name="stackPanel" Margin="0,167,134,187" Background="AntiqueWhite">
             <RadioButton Content="test" ContentTemplate="{StaticResource testTemplate}"
@@ -35,8 +35,8 @@
             <RadioButton Content="test" ContentTemplate="{StaticResource testTemplate}"
                          HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"  Background="Red" VerticalContentAlignment="Center" BorderBrush="Red">
             </RadioButton>
-            <CheckBox Content="test" 
-                      HorizontalContentAlignment="Stretch" Background="Yellow"
+            <CheckBox Content="test_check_btn" x:Name="test_check_btn"
+                      HorizontalContentAlignment="Stretch" Background="Yellow" Checked="CheckBox_Checked"
                       >
                 <CheckBox.ContentTemplate>
                     <DataTemplate>
