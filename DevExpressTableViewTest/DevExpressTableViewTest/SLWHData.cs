@@ -7,20 +7,9 @@ using System.Threading.Tasks;
 
 namespace 控制器
 {
-    class SLWHData : BindableBase
+    class SLWHData : BaseData
     {
-        public void Refresh()
-        {
-            RaisePropertiesChanged();
-        }
-        private int sortid = 0;
-        public int Sortid { get=> sortid; set {
-                sortid = value;
-                RaisePropertyChanged("Sortid");
-            } }
-        public int Id { get; set; }
-        public string Name { get; set; } = "";
-        public long 总下注 { get; set; } = 0;
+        
         private long 狮子_ = 0;
         public long 狮子
         {
@@ -285,21 +274,10 @@ namespace 控制器
             }
         }
 
-        public void ResetMinMin()
-        {
-            max = 0;
-            min = 0;
-            MaxFieldName = "";
-            MinFieldName = "";
-        }
 
-        private long max = 0;
-        private long min = 0;
-        public string MaxFieldName { get; private set; } = "";
-        public string MinFieldName { get; private set; } = "";
 
         
-        public void SetValueByIndex(int index, long value)
+        public override void SetValueByIndex(int index, long value)
         {
             switch (index)
             {

@@ -132,7 +132,7 @@
 
             <dxg:GridControl.Bands>
                 <dxg:GridControlBand Header="玩家信息" Width="Auto">
-                    <dxg:GridColumn FieldName="置顶" CellTemplate="{StaticResource NormalCell}" HorizontalHeaderContentAlignment="Center" Width="25" dxg:BandBase.GridRow="1" Binding="{Binding Sortid, Converter={local:TopTextConverter}}"  EditSettings="{StaticResource CenterText}"/>
+                    <dxg:GridColumn FieldName="置顶" CellTemplate="{StaticResource NormalCell}" HorizontalHeaderContentAlignment="Center" Width="25" dxg:BandBase.GridRow="1" Binding="{Binding SortId, Converter={local:TopTextConverter}}"  EditSettings="{StaticResource CenterText}"/>
                     <dxg:GridColumn FieldName="ID" CellTemplate="{StaticResource NormalCell}" HorizontalHeaderContentAlignment="Center"  Width="90" dxg:BandBase.GridRow="1" Binding="{Binding Id}" EditSettings="{StaticResource CenterText}"/>
                     <dxg:GridColumn FieldName="名字" CellTemplate="{StaticResource NormalCell}" HorizontalHeaderContentAlignment="Center" Width="90" dxg:BandBase.GridRow="1" Binding="{Binding Name}" EditSettings="{StaticResource CenterText}"/>
                     <dxg:GridColumn FieldName="总下注" dxg:BandBase.GridRow="1" Binding="{Binding 总下注}" HorizontalHeaderContentAlignment="Center"

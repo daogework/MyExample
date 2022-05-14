@@ -10,6 +10,28 @@ using System.Windows.Media;
 
 namespace 控制器
 {
+    public class IsContainsWith : MarkupExtension, IMultiValueConverter
+    {
+        public object Convert(
+            object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var result = (string)values[0];
+            var fieldName = (string)values[1];
+            return result.Contains(fieldName);
+            //return true;
+        }
+
+        public object[] ConvertBack(
+            object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return value as object[];
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
+    }
     public class IsContain : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -35,11 +57,11 @@ namespace 控制器
             var data = value as SLWHData;
             if (data != null)
             {
-                if (data.Sortid <= -10)
+                if (data.SortId <= -10)
                 {
                     return "系统不可取消置顶";
                 }
-                if (data.Sortid < 0)
+                if (data.SortId < 0)
                 {
                     return $"取消置顶 (昵称:{data.Name} ID:{data.Id})";
                 }

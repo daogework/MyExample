@@ -1,0 +1,6 @@
+[submodule "RE-TTSCat"]
+	path = RE-TTSCat
+	url = ../RE-TTSCat.git
+[submodule "DGJv3"]
+	path = DGJv3
+	url = ../DGJv3.git

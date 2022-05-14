@@ -128,13 +128,13 @@ namespace 控制器
                 });
             }
 
-            users[10].Sortid = -10;
-            users[11].Sortid = -10;
+            users[10].SortId = -10;
+            users[11].SortId = -10;
             users[10].Name = "系统1";
             users[11].Name = "系统2";
 
             CollectionView = new CollectionViewSource() { Source = users }.View;
-            CollectionView.SortDescriptions.Add(new SortDescription("Sortid", ListSortDirection.Ascending));
+            CollectionView.SortDescriptions.Add(new SortDescription("SortId", ListSortDirection.Ascending));
             CollectionView.SortDescriptions.Add(new SortDescription("总下注", ListSortDirection.Descending));
             CollectionView.MoveCurrentToFirst();
 
@@ -412,18 +412,18 @@ namespace 控制器
             var barButtonItem = sender as BarButtonItem;
             var data = (SLWHData)dataGridEx.CurrentItem;
             //MessageBox.Show(string.Format("Delete {0}?", item.Id), "Are you sure?");
-            if (data.Sortid <= -10)
+            if (data.SortId <= -10)
             {
                 barButtonItem.Content= "系统不可取消置顶";
                 return;
             }
-            if (data.Sortid >= 0)
+            if (data.SortId >= 0)
             {
-                data.Sortid = -5;
+                data.SortId = -5;
             }
             else
             {
-                data.Sortid = 0;
+                data.SortId = 0;
 
             }
             dataGridEx.CurrentItem = null;
@@ -433,7 +433,7 @@ namespace 控制器
         private void dataGridEx_Loaded(object sender, RoutedEventArgs e)
         {
             Console.WriteLine(bottomRadioButtonList.Count);
-            var band = 出奖;
+            //var band = 出奖;
             //FrameworkElement elem = LayoutHelper.FindElementByName(dataGridEx.band, "出奖");
             ////elem = LayoutHelper.FindElementByType<RadioButton>(col.View);
             //Trace.WriteLine(elem);
