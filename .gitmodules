@@ -4,3 +4,9 @@
 [submodule "DGJv3"]
 	path = DGJv3
 	url = ../DGJv3.git
+[submodule "ThreeDPoseTracker"]
+	path = ThreeDPoseTracker
+	url = ../ThreeDPoseTracker.git
+[submodule "netch"]
+	path = netch
+	url = ../netch.git
