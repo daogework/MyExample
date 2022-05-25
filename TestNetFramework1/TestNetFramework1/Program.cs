@@ -23,7 +23,7 @@ namespace TestNetFramework1
             while (true)
             {
                 synchronizationContext.Tick();
-                Thread.Sleep(10);
+                Thread.Sleep(1);
             }
 
             //Console.ReadKey();
