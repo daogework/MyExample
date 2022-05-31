@@ -4,3 +4,4 @@ Release
 .vs
 obj
 *.user
+/TTS_test/TTS_test/Key.cs

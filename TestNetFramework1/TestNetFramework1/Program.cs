@@ -18,6 +18,17 @@ namespace TestNetFramework1
             //SynchronizationContext.Current;
             Test();
             Console.WriteLine($"1 {Thread.CurrentThread.ManagedThreadId}");
+
+            Task.Run(() => {
+                var synchronizationContext = new RunInTargetThreadContext();
+                SynchronizationContext.SetSynchronizationContext(synchronizationContext);
+                TestOnOtherThread();
+                while (true)
+                {
+                    synchronizationContext.Tick();
+                    Thread.Sleep(1);
+                }
+            });
             
 
             while (true)
@@ -28,6 +39,19 @@ namespace TestNetFramework1
 
             //Console.ReadKey();
            
+        }
+
+        async static Task TestOnOtherThread()
+        {
+            Console.WriteLine($"TestOnOtherThread {Thread.CurrentThread.ManagedThreadId}");
+
+            //Thread.Sleep(1000);
+            await Task.Run(() =>
+            {
+                Thread.Sleep(1000);
+            });
+
+            Console.WriteLine($"TestOnOtherThread {Thread.CurrentThread.ManagedThreadId}");
         }
 
         async static Task Test()
