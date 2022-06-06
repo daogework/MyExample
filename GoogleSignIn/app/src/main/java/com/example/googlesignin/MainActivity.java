@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Signed in successfully, show authenticated UI.
 //            updateUI(account);
-            Log.i(TAG, "Signed in successfully:"+account.getDisplayName());
+            Log.i(TAG, "===========Signed in successfully:"+account.getDisplayName()+"=============");
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
