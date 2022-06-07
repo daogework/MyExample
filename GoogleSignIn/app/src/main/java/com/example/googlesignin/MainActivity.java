@@ -1,6 +1,8 @@
 package com.example.googlesignin;
 
+import android.app.Instrumentation;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -11,11 +13,20 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.ActivityResultRegistry;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
 
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -59,16 +70,34 @@ public class MainActivity extends AppCompatActivity {
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(Define.KEY)
-//                .requestEmail()
+                .requestEmail()
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+
     }
 
     GoogleSignInClient mGoogleSignInClient;
+    boolean login = false;
 
     @Override
     protected void onStart() {
+
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                        try {
+                            GoogleSignInAccount account = task.getResult(ApiException.class);
+                            Log.i(TAG, "===========Signed in successfully:"+account.getDisplayName()+"=============");
+                            login=true;
+                        } catch (ApiException e) {
+                            Log.w(TAG, "signInResult:failed code=" + e.getMessage());
+                        }
+                    }
+                });
 
         // Check for existing Google Sign In account, if the user is already signed in
 // the GoogleSignInAccount will be non-null.
@@ -78,9 +107,28 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
+    ActivityResultLauncher<Intent> launcher;
+
     private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        if(login){
+            mGoogleSignInClient.signOut();
+            login=false;
+            Log.i(TAG, "===========signOut=============");
+        }else{
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+
+            launcher.launch(signInIntent);
+//            startActivityForResult(signInIntent, RC_SIGN_IN);
+//            val getGoogleDataBack=registerForActivityResult(new ActivityResultContracts.GetContent(),
+//                    new ActivityResultRegistry() {
+//                        @Override
+//                        public <I, O> void onLaunch(int requestCode, @NonNull ActivityResultContract<I, O> contract, I input, @Nullable ActivityOptionsCompat options) {
+//
+//                        }
+//                    });
+        }
+
+
     }
 
     @Override
@@ -92,22 +140,13 @@ public class MainActivity extends AppCompatActivity {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-    }
-
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            // Signed in successfully, show authenticated UI.
-//            updateUI(account);
-            Log.i(TAG, "===========Signed in successfully:"+account.getDisplayName()+"=============");
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.getMessage());
-//            updateUI(null);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                Log.i(TAG, "===========Signed in successfully:"+account.getDisplayName()+"=============");
+                login=true;
+            } catch (ApiException e) {
+                Log.w(TAG, "signInResult:failed code=" + e.getMessage());
+            }
         }
     }
 
