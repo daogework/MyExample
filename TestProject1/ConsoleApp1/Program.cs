@@ -79,16 +79,32 @@ class TestClass
         public bool CompletedSynchronously => throw new NotImplementedException();
     }
 
+    static async Task TaskAsync()
+    {
+        Console.WriteLine("TaskAsync1");
+        await Task.Delay(1000);
+        Console.WriteLine("TaskAsync2");
+    }
+
+    static Task GetTask()
+    {
+        Console.WriteLine("GetTask");
+        return TaskAsync();
+    }
+
     static int n = 0;
     static void Main(string[] args)
     {
-
-        long currentSelectedCost = 100;
-        for (int i = 0; i < 5; i++)
-        {
-            currentSelectedCost = ChangeCost(currentSelectedCost, 100, 10_0000, false);
-            Console.WriteLine(currentSelectedCost);
-        }
+        Console.WriteLine("1");
+        var task = GetTask();
+        task.Wait();
+        Console.WriteLine("2");
+        //long currentSelectedCost = 100;
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    currentSelectedCost = ChangeCost(currentSelectedCost, 100, 10_0000, false);
+        //    Console.WriteLine(currentSelectedCost);
+        //}
 
         //var input = 900;
         //var 位数 =(int)Math.Log10(input);

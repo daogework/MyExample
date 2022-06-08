@@ -1,38 +1,26 @@
 package com.example.googlesignin;
 
-import android.app.Instrumentation;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.ActivityResultRegistry;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
 
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.googlesignin.databinding.ActivityMainBinding;
+import com.tools.thirdly.GoogleLoginActivity;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -62,20 +50,31 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                signIn();
+//                signIn();
+
+//                GoogleLoginActivity.signOut();
+                GoogleLoginActivity.signIn();
+
+//                GoogleLoginAsync.signOut();
+//                GoogleLoginAsync.signIn(new ActivityResultCallback<GoogleSignInAccount>() {
+//                    @Override
+//                    public void onActivityResult(GoogleSignInAccount result) {
+//
+//                    }
+//                });
             }
         });
-
-        // Configure sign-in to request the user's ID, email address, and basic
+//        GoogleLoginAsync.create(this,Define.KEY);
+        GoogleLoginActivity.create(this,Define.KEY);
+        // Configure sign-in to request the user's ID
+        // , email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(Define.KEY)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(Define.KEY)
+//                .requestEmail()
+//                .build();
+//
+//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     GoogleSignInClient mGoogleSignInClient;
@@ -84,30 +83,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
 
-        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == RESULT_OK) {
-                        Intent data = result.getData();
-                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                        try {
-                            GoogleSignInAccount account = task.getResult(ApiException.class);
-                            Log.i(TAG, "===========Signed in successfully:"+account.getDisplayName()+"=============");
-                            login=true;
-                        } catch (ApiException e) {
-                            Log.w(TAG, "signInResult:failed code=" + e.getMessage());
-                        }
-                    }
-                });
-
         // Check for existing Google Sign In account, if the user is already signed in
 // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 //        updateUI(account);
 
         super.onStart();
     }
 
-    ActivityResultLauncher<Intent> launcher;
+
 
     private void signIn() {
         if(login){
@@ -116,16 +100,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "===========signOut=============");
         }else{
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-
-            launcher.launch(signInIntent);
-//            startActivityForResult(signInIntent, RC_SIGN_IN);
-//            val getGoogleDataBack=registerForActivityResult(new ActivityResultContracts.GetContent(),
-//                    new ActivityResultRegistry() {
-//                        @Override
-//                        public <I, O> void onLaunch(int requestCode, @NonNull ActivityResultContract<I, O> contract, I input, @Nullable ActivityOptionsCompat options) {
-//
-//                        }
-//                    });
+            startActivityForResult(signInIntent, RC_SIGN_IN);
         }
 
 
@@ -152,8 +127,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+//        GoogleLogin.signOut();
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
