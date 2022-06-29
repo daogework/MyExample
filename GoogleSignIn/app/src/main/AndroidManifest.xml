@@ -11,7 +11,8 @@
         android:theme="@style/Theme.GoogleSignIn">
         <activity
             android:name="com.tools.thirdly.GoogleLoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent"/>
         <activity
             android:name=".MainActivity2"
             android:exported="false"
@@ -24,7 +25,6 @@
             android:theme="@style/Theme.GoogleSignIn.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

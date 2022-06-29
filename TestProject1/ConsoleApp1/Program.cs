@@ -3,6 +3,18 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
 
+class TestClass2
+{
+
+}
+static class Extension
+{
+    public static string ToString(this TestClass2 testClass2)
+    {
+        return "TestClass2 test";
+    }
+}
+
 class TestClass
 {
 
@@ -11,94 +23,46 @@ class TestClass
         public int a { get; set; }
     }
 
-    class MyAwaiter : IAsyncResult, IDisposable,INotifyCompletion
-    {
-        public MyAwaiter Current => throw new NotImplementedException();
+    
 
-        public MyAwaiter GetAwaiter()
-        {
-            return default(MyAwaiter);
-        }
-
-        public void GetResult() { }
-
-        public ValueTask DisposeAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IAsyncEnumerator<MyAwaiter> GetAsyncEnumerator(CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ValueTask<bool> MoveNextAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnCompleted(Action continuation)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UnsafeOnCompleted(Action continuation)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerator<MyAwaiter> GetEnumerator()
-        {
-            return ((IEnumerable<MyAwaiter>)Current).GetEnumerator();
-        }
-
-
-
-        public bool MoveNext()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Reset()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsCompleted { get => true; }
-
-
-        public object? AsyncState => throw new NotImplementedException();
-
-        public WaitHandle AsyncWaitHandle => throw new NotImplementedException();
-
-        public bool CompletedSynchronously => throw new NotImplementedException();
-    }
-
-    static async Task TaskAsync()
-    {
-        Console.WriteLine("TaskAsync1");
-        await Task.Delay(1000);
-        Console.WriteLine("TaskAsync2");
-    }
-
-    static Task GetTask()
-    {
-        Console.WriteLine("GetTask");
-        return TaskAsync();
-    }
 
     static int n = 0;
+    public enum e庄闲和类型
+    {
+        无控制 = 0,
+        庄赢,
+        闲赢,
+        和赢
+    }
+    struct TestStruct
+    {
+        public e庄闲和类型 a;
+        public int b;
+    }
+
+    
+
+    
+
+    static void Test(ref TestClass2 testClass2)
+    {
+        testClass2 = null;
+    }
+
     static void Main(string[] args)
     {
-        Console.WriteLine("1");
-        var task = GetTask();
-        task.Wait();
-        Console.WriteLine("2");
+        TestClass2 testClass2 = new TestClass2();
+        Console.WriteLine(testClass2.ToString());
+        //Test(ref testClass2);
+        //Console.WriteLine("1");
+        //var task = GetTask();
+        //task.Wait();
+        //Console.WriteLine("2");
+
+        var arr = new long[10];
+
+        var a = new TestStruct() { b = 1 };
+        var b = a;
         //long currentSelectedCost = 100;
         //for (int i = 0; i < 5; i++)
         //{
