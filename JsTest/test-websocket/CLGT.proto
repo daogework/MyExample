@@ -1,0 +1,185 @@
+syntax = "proto3";
+
+//客户端与网关之间的消息
+package CLGT;
+
+//握手请求
+message HandReq
+{
+    int32 platform = 1;             //运行平台 0未知 1IOS 2ANDROID 3WINDOWS 4LINUX 5MAC 6WebGL
+    int32 product = 2;              //产品代号 0:未知的产品 1:游戏平台
+    int32 version = 3;              //产品版本号
+    string device = 4;              //机器设备码
+    int32 channel = 5;              //渠道 0未知 1官方 2苹果 3华为 4OPPO 5VIVO 6小米 7应用宝 8百度 9快手 10抖音
+    string country = 6;             //国家标识
+    string language = 7;            //语言标识
+}
+//握手回应
+message HandAck
+{
+    int32 errcode = 1;              //0成功 1无法识别的平台 2无法识别的产品 3版本太老需强更 4拒绝访问 5你的IP已被封禁 6你的设备已被封禁
+    int32 payload = 2;              //当前网关负载
+    bytes random_key = 3;           //随机秘钥数组
+    repeated int32 random_key_arr = 4;
+    string session_guid = 5;        //当前会话Guid
+}
+//网络中断通知
+message DisconnectNtf
+{
+    int32 code = 1;                 //0断开通知 1连接超时 2被踢下线 3被挤下线 4网关维护 5平台维护 6游戏维护 7与平台服务器断开连接 8与游戏服务器断开连接 9系统错误
+    string errmessage = 2;          //附加错误信息，目前是当错误码为9时该字段有效
+}
+//物品信息结构 STRUCT!!
+message ItemInfo
+{
+    int32 item_id = 1;              //物品主类型
+    int32 item_sub_id = 2;          //物品子类型
+    int64 item_count = 3;           //物品数量
+}
+
+//外壳更新请求
+message ShellCheckUpdateReq
+{
+}
+//外壳更新应答
+message ShellCheckUpdateAck
+{
+    int32 errcode = 1;              //0成功 1失败
+    bool success = 2;               //检查结果, true-需要更新 false-不需要更
+	int32 shell_version = 3;		//当前版本
+	string shell_update_name = 4;   //外壳更新名称
+    string shell_update_url = 5;    //外壳更新地址
+	string script_update_dns = 6;   //脚本更新域名
+}
+
+//登录平台请求
+message LoginReq
+{
+    int32 login_type = 1;       //登录方式 0未知 1游客 2手机 3QQ 4微信 5Facebook 6GooglePlay 7GameCenter
+    string token = 2;           //唯一标识串
+}
+//登录平台应答
+message LoginAck
+{
+    int32 errcode = 1;                      //0成功 1平台服务器不可用 2账号被封禁 3系统繁忙 4系统错误 5系统暂未开放 6认证失败 7暂不支持的登录方式 8设备注册过多 9IP注册过多 10设备登录账号过多 11IP登录账号过多
+    string user_guid = 2;                   //玩家guid 
+    int32 user_id = 3;                      //玩家Id
+    string nickname = 4;                    //昵称
+    bool nickname_mdf = 5;                  //昵称是否修改过
+    int32 gender = 6;                       //性别 0保密 1男 2女
+    int32 head = 7;                         //头像Id
+    int32 head_frame = 8;                   //头像框Id
+    int32 level = 9;                        //玩家等级
+    int64 level_exp = 10;                    //等级经验
+    int32 vip_level = 11;                   //vip等级
+    int64 vip_level_exp = 12;               //vip等级经验
+    string phone = 13;                      //手机号
+    int64 diamond = 14;                     //钻石
+    int64 currency = 15;                    //平台货币
+    string account = 16;                    //绑定的账号
+    repeated ItemInfo items = 17;           //物品数组
+    fixed32 server_timestamp = 18;          //服务器时间戳
+    string email = 19;                      //绑定邮箱
+    string address = 20;                    //住址
+    string personal_signature = 21;         //个性签名
+    string client_config_md5 = 22;          //最新客户端配置表的md5
+    int64 max_gun_value = 23;               //最大解锁炮倍
+    string time_string = 24;                //账号解封时间或系统开放时间，空串代表永久
+    bool bank_password_flag = 25;           //是否已设置金库密码
+    int64 bank_currency = 26;               //银行金币数量
+    int32 last_game_id = 27;                //上次参与未结束的游戏Id，客户端根据此字段判断启动哪个客户端子游戏
+    int32 last_room_id = 28;                //上次参与未结束的房间Id，客户端根据此字段判断启动哪个客户端子游戏
+    string head_url = 29;                   //头像url地址
+    int32 max_start = 30;                   //连接条数
+    repeated string agent_server_list = 31; //代理数组
+    repeated int32 game_kind_list = 32;     //游戏类型数组
+    bool state = 33;                        //审核模式, true-审核模式, false-正常模式, 审核模式,客户端屏蔽部分功能,用于审核
+}
+
+//发送邮件验证码
+message EmailSendCodeReq
+{
+    int32 intent = 1;               //发验证码目的 1注册账号 2绑定账号 3找回密码
+	bool hai_wai = 2;				//是否海外
+    string email = 3;               //电子邮箱
+}
+message EmailSendCodeAck
+{
+	int32 errcode = 1;          	//0成功 1该邮件已绑定其他账号 2该邮件尚未绑定游戏账号 3邮件验证码发送失败 4邮件发送太频繁
+}
+
+//发送短信验证码
+message PhoneSendCodeReq
+{
+    int32 intent = 1;               //发验证码目的 1注册账号 2绑定账号 3找回密码
+    string phone = 2;               //手机号
+	int32 sms_channel = 3;			//短信渠道 1岱亿短信 2创瑞云 3阿里短信 4JY短信平台web.duanxin123.cn 5容联云通信
+}
+message PhoneSendCodeAck
+{
+	int32 errcode = 1;          	//0成功 1该手机号已绑定其他账号 2该手机尚未绑定游戏账号 3短信验证码发送失败 4短信发送太频繁
+}
+
+//检测账号是否存在
+message CheckAccountExistReq
+{
+    string account = 1;             //账号
+}
+message CheckAccountExistAck
+{
+    int32 errcode = 1;              //0成功 1请求太频繁，请稍后再试
+    bool is_exist = 2;              //账号是否存在
+}
+
+//注册账号请求
+message AccountRegisterReq
+{
+    string account = 1;             //账号
+    string password = 2;            //密码，使用CA3加密19357
+    string phone = 3;               //手机号，手机号或邮箱地址二选一
+    string email = 4;               //邮箱，手机号或邮箱地址二选一
+    string code = 5;                //短信或邮箱验证码
+    int32 platform = 6;             //0未知 1IOS 2ANDROID 3WINDOWS 4LINUX 5MAC 6WebGL
+    string device = 7;              //注册设备号
+    int32 channel = 8;              //注册渠道号
+    string nickname = 9;            //注册昵称
+}
+message AccountRegisterAck
+{
+    int32 errcode = 1;              //0成功 1参数错误 2账号已存在 3注册太频繁请稍后再试 4账号或密码格式不合法 5该手机号或邮箱注册过多 6验证码不正确 7创建账号失败 8昵称不合法 9昵称已存在
+    int32 user_id = 2;              //玩家Id
+    string nickname = 3;            //昵称
+    int32 head = 4;                 //头像Id
+    int32 head_frame = 5;           //头像框Id
+}
+
+//重置密码请求
+message AccountResetPasswordReq
+{
+    string account = 1;             //账号
+    string new_password = 2;        //新密码，使用CA3加密19357
+    string phone = 3;               //手机号，手机号或邮箱地址二选一
+    string email = 4;               //邮箱，手机号或邮箱地址二选一
+    string code = 5;                //短信或邮箱验证码
+}
+message AccountResetPasswordAck
+{
+    int32 errcode = 1;              //0成功 1参数错误 2密码无效 3密码不合法 4账号不存在 5邮箱或手机号码不匹配 6验证码不正确
+}
+
+//心跳包请求，客户端应当每间隔10秒发一个心跳包，证明你还活着
+message KeepAliveReq
+{
+    //nothing
+}
+//心跳包回应
+message KeepAliveAck
+{
+    int32 errcode = 1;              //0成功
+}
+
+//请求网络掉线
+message TestNetInterruptRpt
+{
+}
+

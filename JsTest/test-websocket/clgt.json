@@ -1,0 +1,453 @@
+{
+  "nested": {
+    "CLGT": {
+      "nested": {
+        "HandReq": {
+          "fields": {
+            "platform": {
+              "type": "int32",
+              "id": 1
+            },
+            "product": {
+              "type": "int32",
+              "id": 2
+            },
+            "version": {
+              "type": "int32",
+              "id": 3
+            },
+            "device": {
+              "type": "string",
+              "id": 4
+            },
+            "channel": {
+              "type": "int32",
+              "id": 5
+            },
+            "country": {
+              "type": "string",
+              "id": 6
+            },
+            "language": {
+              "type": "string",
+              "id": 7
+            }
+          }
+        },
+        "HandAck": {
+          "fields": {
+            "errcode": {
+              "type": "int32",
+              "id": 1
+            },
+            "payload": {
+              "type": "int32",
+              "id": 2
+            },
+            "randomKey": {
+              "type": "bytes",
+              "id": 3
+            },
+            "randomKeyArr": {
+              "rule": "repeated",
+              "type": "int32",
+              "id": 4
+            },
+            "sessionGuid": {
+              "type": "string",
+              "id": 5
+            }
+          }
+        },
+        "DisconnectNtf": {
+          "fields": {
+            "code": {
+              "type": "int32",
+              "id": 1
+            },
+            "errmessage": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ItemInfo": {
+          "fields": {
+            "itemId": {
+              "type": "int32",
+              "id": 1
+            },
+            "itemSubId": {
+              "type": "int32",
+              "id": 2
+            },
+            "itemCount": {
+              "type": "int64",
+              "id": 3
+            }
+          }
+        },
+        "ShellCheckUpdateReq": {
+          "fields": {}
+        },
+        "ShellCheckUpdateAck": {
+          "fields": {
+            "errcode": {
+              "type": "int32",
+              "id": 1
+            },
+            "success": {
+              "type": "bool",
+              "id": 2
+            },
+            "shellVersion": {
+              "type": "int32",
+              "id": 3
+            },
+            "shellUpdateName": {
+              "type": "string",
+              "id": 4
+            },
+            "shellUpdateUrl": {
+              "type": "string",
+              "id": 5
+            },
+            "scriptUpdateDns": {
+              "type": "string",
+              "id": 6
+            }
+          }
+        },
+        "LoginReq": {
+          "fields": {
+            "loginType": {
+              "type": "int32",
+              "id": 1
+            },
+            "token": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "LoginAck": {
+          "fields": {
+            "errcode": {
+              "type": "int32",
+              "id": 1
+            },
+            "userGuid": {
+              "type": "string",
+              "id": 2
+            },
+            "userId": {
+              "type": "int32",
+              "id": 3
+            },
+            "nickname": {
+              "type": "string",
+              "id": 4
+            },
+            "nicknameMdf": {
+              "type": "bool",
+              "id": 5
+            },
+            "gender": {
+              "type": "int32",
+              "id": 6
+            },
+            "head": {
+              "type": "int32",
+              "id": 7
+            },
+            "headFrame": {
+              "type": "int32",
+              "id": 8
+            },
+            "level": {
+              "type": "int32",
+              "id": 9
+            },
+            "levelExp": {
+              "type": "int64",
+              "id": 10
+            },
+            "vipLevel": {
+              "type": "int32",
+              "id": 11
+            },
+            "vipLevelExp": {
+              "type": "int64",
+              "id": 12
+            },
+            "phone": {
+              "type": "string",
+              "id": 13
+            },
+            "diamond": {
+              "type": "int64",
+              "id": 14
+            },
+            "currency": {
+              "type": "int64",
+              "id": 15
+            },
+            "account": {
+              "type": "string",
+              "id": 16
+            },
+            "items": {
+              "rule": "repeated",
+              "type": "ItemInfo",
+              "id": 17
+            },
+            "serverTimestamp": {
+              "type": "fixed32",
+              "id": 18
+            },
+            "email": {
+              "type": "string",
+              "id": 19
+            },
+            "address": {
+              "type": "string",
+              "id": 20
+            },
+            "personalSignature": {
+              "type": "string",
+              "id": 21
+            },
+            "clientConfigMd5": {
+              "type": "string",
+              "id": 22
+            },
+            "maxGunValue": {
+              "type": "int64",
+              "id": 23
+            },
+            "timeString": {
+              "type": "string",
+              "id": 24
+            },
+            "bankPasswordFlag": {
+              "type": "bool",
+              "id": 25
+            },
+            "bankCurrency": {
+              "type": "int64",
+              "id": 26
+            },
+            "lastGameId": {
+              "type": "int32",
+              "id": 27
+            },
+            "lastRoomId": {
+              "type": "int32",
+              "id": 28
+            },
+            "headUrl": {
+              "type": "string",
+              "id": 29
+            },
+            "maxStart": {
+              "type": "int32",
+              "id": 30
+            },
+            "agentServerList": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 31
+            },
+            "gameKindList": {
+              "rule": "repeated",
+              "type": "int32",
+              "id": 32
+            },
+            "state": {
+              "type": "bool",
+              "id": 33
+            }
+          }
+        },
+        "EmailSendCodeReq": {
+          "fields": {
+            "intent": {
+              "type": "int32",
+              "id": 1
+            },
+            "haiWai": {
+              "type": "bool",
+              "id": 2
+            },
+            "email": {
+              "type": "string",
+              "id": 3
+            }
+          }
+        },
+        "EmailSendCodeAck": {
+          "fields": {
+            "errcode": {
+              "type": "int32",
+              "id": 1
+            }
+          }
+        },
+        "PhoneSendCodeReq": {
+          "fields": {
+            "intent": {
+              "type": "int32",
+              "id": 1
+            },
+            "phone": {
+              "type": "string",
+              "id": 2
+            },
+            "smsChannel": {
+              "type": "int32",
+              "id": 3
+            }
+          }
+        },
+        "PhoneSendCodeAck": {
+          "fields": {
+            "errcode": {
+              "type": "int32",
+              "id": 1
+            }
+          }
+        },
+        "CheckAccountExistReq": {
+          "fields": {
+            "account": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "CheckAccountExistAck": {
+          "fields": {
+            "errcode": {
+              "type": "int32",
+              "id": 1
+            },
+            "isExist": {
+              "type": "bool",
+              "id": 2
+            }
+          }
+        },
+        "AccountRegisterReq": {
+          "fields": {
+            "account": {
+              "type": "string",
+              "id": 1
+            },
+            "password": {
+              "type": "string",
+              "id": 2
+            },
+            "phone": {
+              "type": "string",
+              "id": 3
+            },
+            "email": {
+              "type": "string",
+              "id": 4
+            },
+            "code": {
+              "type": "string",
+              "id": 5
+            },
+            "platform": {
+              "type": "int32",
+              "id": 6
+            },
+            "device": {
+              "type": "string",
+              "id": 7
+            },
+            "channel": {
+              "type": "int32",
+              "id": 8
+            },
+            "nickname": {
+              "type": "string",
+              "id": 9
+            }
+          }
+        },
+        "AccountRegisterAck": {
+          "fields": {
+            "errcode": {
+              "type": "int32",
+              "id": 1
+            },
+            "userId": {
+              "type": "int32",
+              "id": 2
+            },
+            "nickname": {
+              "type": "string",
+              "id": 3
+            },
+            "head": {
+              "type": "int32",
+              "id": 4
+            },
+            "headFrame": {
+              "type": "int32",
+              "id": 5
+            }
+          }
+        },
+        "AccountResetPasswordReq": {
+          "fields": {
+            "account": {
+              "type": "string",
+              "id": 1
+            },
+            "newPassword": {
+              "type": "string",
+              "id": 2
+            },
+            "phone": {
+              "type": "string",
+              "id": 3
+            },
+            "email": {
+              "type": "string",
+              "id": 4
+            },
+            "code": {
+              "type": "string",
+              "id": 5
+            }
+          }
+        },
+        "AccountResetPasswordAck": {
+          "fields": {
+            "errcode": {
+              "type": "int32",
+              "id": 1
+            }
+          }
+        },
+        "KeepAliveReq": {
+          "fields": {}
+        },
+        "KeepAliveAck": {
+          "fields": {
+            "errcode": {
+              "type": "int32",
+              "id": 1
+            }
+          }
+        },
+        "TestNetInterruptRpt": {
+          "fields": {}
+        }
+      }
+    }
+  }
+}
