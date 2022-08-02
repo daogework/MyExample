@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package Arithmetic;
+
+// The greeting service definition.
+service BJL {
+  // Sends a greeting
+  rpc Handle (Request) returns (Reply);
+  rpc NewPoker (Empty) returns (Poker);
+}
+
+message Empty{
+
+}
+
+message Player{
+  map<string,int64> data = 1;
+}
+
+
+// The request message containing the user's name.
+message Request {
+  int64 PrizePool = 1;
+  int32 Round = 2;
+  Poker poker = 4;
+  repeated Player PlayerList = 5;
+}
+
+// The response message containing the greetings.
+message Reply {
+  repeated int32 zhuangCardList = 1;
+  repeated int32 xianCardList = 2;
+}
+
+message Poker{
+	repeated int32 cards = 1;
+}

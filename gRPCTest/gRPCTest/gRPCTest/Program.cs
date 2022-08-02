@@ -10,10 +10,10 @@ namespace gRPCTest
     {
         static void Main(string[] args)
         {
-            Channel channel = new Channel("127.0.0.1:51111", ChannelCredentials.Insecure);
+            Channel channel = new Channel("127.0.0.1:18999", ChannelCredentials.Insecure);
             //var client = new BJLAL.(channel);
             var client = new BJL.BJLClient(channel);
-
+            channel.ConnectAsync().Wait();
             var PlayerList = new List<Dictionary<string, long>>() {
                 //new Dictionary<string,long>{ { "", 1000 } },
                 new Dictionary<string,long>{{"zhuangquyu",1000},{"xianquyu",0},{"hequyu",0},{"zhuangduiziquyu",0},{"xianduiziquyu",0},{"daquyu",0},{"xiaoquyu",0},{"zhuangxingyun6quyu",0},{"xianxingyun6quyu",0},{"ControlValue",500},},
