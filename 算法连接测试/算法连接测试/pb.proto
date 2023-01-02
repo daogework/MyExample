@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+service GrpcApi {
+  rpc GetInitialReelInfo(GetInitialReelInfoReq) returns (GetInitialReelInfoRes) {}
+  rpc Bet(BetReq) returns (BetRes) {}
+}
+
+// grpc 請求結構
+message GetInitialReelInfoReq {
+}
+
+message GetInitialReelInfoRes {  
+  message Reels {
+    string bGs = 1; // 一般遊戲滾輪表(共五份[][]int64)
+    string fGs = 2; // 免費遊戲滾輪表(共五份[][]int64)
+  }
+
+  message Result {
+    string version = 1; // 滾輪表版號
+    Reels reels = 2;  // 滾輪表
+    repeated int64 position = 3;  // 初始輪帶 index
+    string randPositionList = 4; // 50組沒中獎的輪帶位置(betType=1的情況)
+  }
+
+  Result result = 1;
+}
+
+message BetReq {
+ int64 multiple = 1 ;    // 下注倍率
+ int64 ante = 2 ;    // 下注底分
+ double expectRTP = 3 ; // 期望RTP
+ int64 maxCompensation = 4 ; // 天險
+ int64 outcomeMultiple = 5 ; // 得分倍率(若無請填1)
+ bool isBaseGameNotHit = 6; // 必開沒得分的一般遊戲,不會進FG
+ bool isBaseGameHit = 7;    // 必開有得分的一般遊戲,不會進FG
+ bool isFreeGameNotHit = 8; // 必開免費遊戲,僅開保底低倍率情況
+ bool isFreeGameHit = 9;    // 必開免費遊戲,正常強度
+
+}
+
+message BetRes {
+
+  message Winwaylist {
+      int64 x = 1;  // 每輪中獎個數相乘後的值
+      int64 lineNum = 2;  // 表示幾連線
+      int64 winNum = 3; // 中獎圖標
+      int64 winBonus = 4; // 此連線中獎彩金
+      string singlePos = 5;  // 此圖標中獎位置[5][3],值0(沒中)或1(中)
+  }
+
+  message Scatter {
+      int64 winNum = 1; // 中獎圖標
+      int64 count = 2;  // scatter個數
+      int64 winBonus = 3; // 此連線彩金
+      string scatterPos = 4; // scatter位置[5][3],值0(沒s)或1(有s)
+  }
+
+  message Jackpot {
+      int64 winNum = 1; // 中獎Jackpot圖標
+      int64 winBonus = 2; // 此Jackpot圖標彩金
+      repeated int64 jPTable = 3; // 15個的Jackpot位置排序
+  }
+
+  message Resultlist {
+      repeated int64 randomNumList = 1; // 停輪位置(正中間的滾輪帶編號,5x3畫面的正中間那個)
+      string reels = 2;  // 此次停輪後的盤面(盤面大小5x3)
+      string totalHitPosition = 3; // 此停輪所有圖標中獎位置[5][3],沒中=0,中=1
+      int64 totalWinBonus = 4; // 此次停輪彩金
+      repeated Winwaylist winWayList = 5; // 此次停輪各連線詳細訊息
+      Scatter scatter = 6;  // Scatter的中獎詳細訊息
+      Jackpot jackpot = 7;  // 中獎的Jackpot詳情
+  }
+
+  message Result {
+      int64 currentCash = 1;  // 目前所持有金額
+      string version = 2; // 滾輪表版本
+      int64 totalBet = 3; // 總押注
+      int64 ante = 4; // BG下注時的底注
+      int64 multiple = 5; // BG下注時的倍率
+      int64 OutcomeMultiple = 6;  // 得分倍率(若無請填1)
+      bool fgEnable = 7;  // 是否進入 FG
+      repeated int64 fgLevelList = 8; // 可以選擇的 FG 列表
+      int64 fgLevelChoose = 9;  // 選擇的 FG 數字 ,值域[1,5]
+      string allReels = 10;  // 各停輪盤面[1 or N][5][5]
+      repeated Resultlist resultList = 11;  // 各停輪詳細資訊
+      int64 totalBonus = 12;  // 總賠付
+  }
+
+  Result result = 1;
+}
