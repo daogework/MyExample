@@ -1,0 +1,73 @@
+﻿<Window x:Class="算法界面.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:算法界面" xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="610" Width="1598">
+    <Grid>
+
+        <GroupBox Header="输入参数" Margin="0,0,451,83" RenderTransformOrigin="0.281,0.514">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,3">
+                    <TextBlock  Width="193" Text="下注倍率" Margin="5,0,5,0"/>
+                    <TextBox TextChanged="input_TextChanged" Name="input_Multiple" TextWrapping="Wrap" Text="10" Width="120" Margin="0,0,5,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="下注底分" Margin="5,0,5,0"/>
+                    <TextBox TextChanged="input_TextChanged" Name="input_Ante" TextWrapping="Wrap" Text="10" Width="120" Margin="0,0,5,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="期望RTP" Margin="5,0,5,0"/>
+                    <TextBox TextChanged="input_TextChanged" Name="input_ExpectRTP" TextWrapping="Wrap" Text="1" Width="120" Margin="0,0,5,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="天險" Margin="5,0,5,0"/>
+                    <TextBox TextChanged="input_TextChanged" Name="input_MaxCompensation" TextWrapping="Wrap" Text="1" Width="120" Margin="0,0,5,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="得分倍率(若無請填1)" Margin="5,0,5,0"/>
+                    <TextBox TextChanged="input_TextChanged" Name="input_OutcomeMultiple" TextWrapping="Wrap" Text="1" Width="120" Margin="0,0,5,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="必開沒得分的一般遊戲,不會進FG" Margin="5,0,5,0"/>
+                    <CheckBox Checked="CheckBox_Checked" Name="IsBaseGameNotHit"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="必開有得分的一般遊戲,不會進FG" Margin="5,0,5,0"/>
+                    <CheckBox Checked="CheckBox_Checked" Name="IsBaseGameHit"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="必開免費遊戲,僅開保底低倍率情況" Margin="5,0,5,0"/>
+                    <CheckBox Checked="CheckBox_Checked" Name="IsFreeGameNotHit"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="必開免費遊戲,正常強度" Margin="5,0,5,0"/>
+                    <CheckBox Checked="CheckBox_Checked" Name="IsFreeGameHit"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="Roll次数" Margin="5,0,5,0"/>
+                    <TextBox TextChanged="input_TextChanged" Name="input_Count" TextWrapping="Wrap" Text="10" Width="120" Margin="0,0,5,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="携带分数" Margin="5,0,5,0"/>
+                    <TextBox TextChanged="input_TextChanged" Name="input_StartScore" TextWrapping="Wrap" Text="1000000" Width="120" Margin="0,0,5,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,3,0,3">
+                    <TextBlock  Width="193" Text="写日志" Margin="5,0,5,0"/>
+                    <CheckBox Checked="CheckBox_Checked" Name="isWritelog"/>
+                </StackPanel>
+            </StackPanel>
+
+        </GroupBox>
+        <GroupBox Header="结果图表" Margin="354,0,0,83">
+            <d3:Chart BottomTitle="次数" LeftTitle="分数">
+                <d3:LineGraph x:Name="linegraph" Description="分数走势" Stroke="Blue" StrokeThickness="3"/>
+            </d3:Chart>
+        </GroupBox>
+
+        <Button Name="StartBtn" Content="开始" Click="Button_Click" HorizontalAlignment="Center" Margin="0,396,0,10" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Window>
